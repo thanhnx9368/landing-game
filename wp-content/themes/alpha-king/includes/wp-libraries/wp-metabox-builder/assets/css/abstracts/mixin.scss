@@ -1,0 +1,74 @@
+@mixin mediaMaxWidth($w_width) {
+    @media only screen and (max-width: $w_width) {
+        @content;
+    }
+}
+@mixin mediaMinWidth($w_width) {
+    @media only screen and (min-width: $w_width) {
+        @content;
+    }
+}
+
+@mixin fixedFull {
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+}
+
+@mixin absoluteFull {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+}
+
+@mixin boxSizing($value) {
+    -webkit-box-sizing: $value;
+    -moz-box-sizing: $value;
+    box-sizing: $value;
+}
+
+@mixin transition($value) {
+    -webkit-transition: $value;
+    -moz-transition: $value;
+    transition: $value;
+}
+
+@mixin transform($value) {
+    -webkit-transform: $value;
+    -moz-transform: $value;
+    transform: $value;
+}
+
+@mixin animation($value) {
+    -webkit-animation: $value;
+    -moz-animation: $value;
+    -o-animation: $value;
+    -ms-animation: $value;
+}
+
+@mixin keyframes( $animationName ){
+    @-webkit-keyframes #{$animationName} {
+        @content;
+    }
+    @-moz-keyframes #{$animationName} {
+        @content;
+    }
+    @-o-keyframes #{$animationName} {
+        @content;
+    }
+    @keyframes #{$animationName} {
+        @content;
+    }
+}
+
+@mixin clearfix() {
+    &:after {
+        content: "";
+        display: table;
+        clear: both;
+    }
+}

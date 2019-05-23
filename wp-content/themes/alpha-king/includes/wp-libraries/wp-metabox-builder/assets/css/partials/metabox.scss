@@ -1,0 +1,112 @@
+.cms-editor {
+    max-width: 1000px;
+}
+
+.field-group {
+    position: relative;
+    padding: 10px 0;
+    border-bottom: 1px solid #f5f5f5;
+    margin-bottom: 3px; 
+}
+
+.field-label {
+    margin-bottom: 9px;
+    font-size: 14px;
+    text-indent: 1px;
+    text-transform: uppercase;
+    font-weight: 500;
+}
+
+.field-input {
+    position: relative;
+    input {
+        display: block;
+        width: 100%; 
+        height: 34px;
+        padding: 0 10px;
+        border-radius: 3px;
+        border: 1px solid #d8d8d8;
+        box-shadow: none;
+        font-size: 13px;
+    }
+}
+
+.field-video {
+    iframe {
+        margin-top: 20px;
+        width: 560px;
+        height: 315px;
+        border-radius: 5px;
+        overflow: hidden;
+    }
+}
+
+.field-textarea {
+    textarea {
+        display: block;
+        width: 100%; 
+        min-height: 150px;
+        padding: 8px 10px;
+        border-radius: 3px;
+        border: 1px solid #d8d8d8;
+        resize: none;
+        box-shadow: none;
+        font-size: 13px;
+    }
+}
+
+.field-date {
+    position: relative;
+    display: block;
+    input {
+        display: block;
+        width: 200px;
+        height: 34px;
+        padding: 0 10px;
+        border-radius: 3px;
+        border: 1px solid #d8d8d8;
+        box-shadow: none;
+        font-size: 13px;
+    }
+}
+
+.field-group {
+    input, textarea, button {
+        color: gray;
+        @include transition(color .15s ease);
+        &:focus {
+            border-color: #5b9dd9;
+            -webkit-box-shadow: 0 0 2px rgba(30,140,190,.8);
+            box-shadow: 0 0 2px rgba(30,140,190,.8);
+            color: black;
+        }
+    }
+}
+
+// Button for post type static 
+.metabox-builder-btn-format {
+    display: inline-block;
+    padding: 5px 10px;
+    color: gray;
+    background-color: #ececec;
+    border-radius: 4px;
+    text-decoration: none;
+}
+
+.metabox-builder-msg-normal {
+    display: block;
+    margin: 9px 0;
+    font-style: italic;
+    color: green;
+    font-size: 13px;
+    font-weight: 600;
+}
+
+.upload-files-preview {
+    max-width: 350px;
+    margin-top: 10px;
+}
+.upload-files-preview img {
+    max-width: 100%;
+    margin-right: 1%;
+}

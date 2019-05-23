@@ -1,0 +1,34 @@
+.theme-tab-head.is-sidebar {
+    padding: 0;
+    .item {
+        display: block;
+        padding: 0px;
+        margin-bottom: 20px;
+        background-color: #fff;
+        a {
+            text-decoration: none;
+        }
+        > a {
+            display: block;
+            padding: 7px 20px;
+            background-color: #23282d;
+            text-transform: uppercase;
+            text-decoration: none;
+            font-size: 16px;
+            color: #fff;
+            box-shadow: none !important;
+            &.is-active {
+                text-decoration: underline;
+            }
+        }
+        ul {
+            padding: 15px 20px;
+            a {
+                box-shadow: none !important;
+                &.is-active {
+                    text-decoration: underline;
+                }
+            }
+        }
+    }
+}

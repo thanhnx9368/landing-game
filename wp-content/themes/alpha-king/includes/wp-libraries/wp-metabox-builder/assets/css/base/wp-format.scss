@@ -1,0 +1,59 @@
+/* Photo/Image list */
+.tu-meta-box-photo-list li {
+    width: 11.5%;
+    display: inline-block;
+    position: relative;
+    margin-right: 1%;
+}
+.tu-meta-box-photo-list li:hover {
+    cursor: move;
+}
+.tu-meta-box-photo-list img {
+    width: 100%;
+    display: block;
+    background: #f7f7f7;
+}
+.tu-meta-box-photo-list .remove {
+    background: none repeat scroll 0% 0% rgba(0, 0, 0, 0.5);
+    padding: 5px;
+    position: absolute;
+    color: #FFF;
+    right: 0px;
+    top: 0px;
+    display: none;
+    cursor: pointer;
+}
+.tu-meta-box-photo-list .edit{
+    background: none repeat scroll 0% 0% rgba(0, 0, 0, 0.5);
+    padding: 5px;
+    position: absolute;
+    color: #FFF;
+    top: 0px;
+    display: none;
+    cursor: pointer;
+}
+.tu-meta-box-photo-list .edit {
+    right: 31px;
+}
+.tu-meta-box-photo-list li:hover .remove,
+.tu-meta-box-photo-list li:hover .edit{
+    display: block;
+}
+
+/* Thick box */
+.thickbox-loading table td img{
+    background: #f7f7f7;
+    max-height: 150px;
+}
+/* Tablet landscape */
+@media screen and (max-width: 1600px) {
+    .tu-meta-box-photo-list li {
+        width: 24%;
+    }
+}
+/* Smartphone portrait */
+@media screen and (max-width: 400px) {
+    .tu-meta-box-photo-list li {
+        width: 49%;
+    }
+}

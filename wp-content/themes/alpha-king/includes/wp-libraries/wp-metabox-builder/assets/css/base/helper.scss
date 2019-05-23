@@ -1,0 +1,223 @@
+.row {
+    margin-right: -15px;
+    margin-left: -15px;
+    @include clearfix;
+}
+
+.fl {
+    float: left;
+}
+
+.fr {
+    float: right;
+}
+
+.fri {
+    float: right !important;
+}
+
+.lsn,
+.lsn>li {
+    list-style: none;
+}
+
+.posr {
+    position: relative;
+}
+
+.posa {
+    position: absolute;
+}
+
+.posf {
+    position: fixed;
+}
+
+.imgdf>img {
+    max-width: 100%;
+    width: auto;
+    height: auto;
+    border: none;
+}
+
+.hidden {
+    display: none;
+}
+
+.dib {
+    display: inline-block;
+}
+
+.dtb {
+    display: table;
+}
+
+.dtbc {
+    display: table-cell;
+}
+
+.pt0 {
+    padding-top: 0 !important;
+}
+
+.pr0 {
+    padding-right: 0 !important;
+}
+
+.pt0 {
+    padding-top: 0 !important;
+}
+
+.pb0 {
+    padding-bottom: 0 !important;
+}
+
+.tac {
+    text-align: center;
+}
+
+.taj {
+    text-align: justify;
+}
+
+.tal {
+    text-align: left;
+}
+
+.tar {
+    text-align: right;
+}
+
+.ttu {
+    text-transform: uppercase;
+}
+
+.tdu {
+    text-decoration: underline;
+}
+
+.tdn {
+    text-decoration: none;
+}
+
+.fwb {
+    font-weight: bold;
+}
+
+.vat {
+    vertical-align: top;
+}
+
+.fwb {
+    font-weight: bold;
+}
+
+.fw2 {
+    font-weight: 200;
+}
+
+.fw3 {
+    font-weight: 300;
+}
+
+.fw4 {
+    font-weight: 400;
+}
+
+.fw5 {
+    font-weight: 500;
+}
+
+.fw6 {
+    font-weight: 600;
+}
+
+.fw7 {
+    font-weight: 700;
+}
+
+.fw8 {
+    font-weight: 800;
+}
+
+.fw9 {
+    font-weight: 900;
+}
+
+.fwsb {
+    font-weight: 600;
+}
+
+.ovfh {
+    overflow: hidden;
+}
+
+.no-padding {
+    padding-top: 0;
+    padding-bottom: 0;
+    padding-left: 0;
+    padding-right: 0;
+}
+
+.no-margin {
+    margin-top: 0;
+    margin-bottom: 0;
+    margin-left: 0;
+    margin-right: 0;
+}
+
+.img-background-full-center {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    z-index: -1;
+    min-height: 101%;
+    min-width: 101%;
+    @include transform(translate(-50%, -50%));
+    @include transition(all 0.3s ease);
+}
+
+@media (max-width: 1024px) {
+    .hidden-devide-1024 {
+        display: none !important;
+    }
+}
+
+@media (min-width: 1025px) {
+    .show-devide-1024 {
+        display: none !important;
+    }
+}
+
+@media (max-width: 768px) {
+    .hidden-devide-768 {
+        display: none !important;
+    }
+}
+
+@media (min-width: 769px) {
+    .show-devide-768 {
+        display: none !important;
+    }
+}
+
+// Video Iframe, not suppport on IE-8
+.video_iframe__wrap {
+    position: relative;
+    width: 100%;
+    padding-bottom: 56.25%;
+}
+
+.video_iframe__inner {
+    @include absoluteFull;
+    display: block;
+    z-index: 1;
+}
+
+.clearfix {
+    &:after {
+        content: "";
+        clear: both;
+        display: table;
+    }
+}

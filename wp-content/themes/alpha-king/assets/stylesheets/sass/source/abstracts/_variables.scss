@@ -1,0 +1,38 @@
+// -----------------------------------------------------------------------------
+// This file contains all application-wide Sass variables.
+// -----------------------------------------------------------------------------
+$font-size: 14px;
+
+$font-thin : "Roboto-Thin";
+$font-light : "Roboto-Light";
+$font-medium : "Roboto-Medium";
+$font-book : "Roboto-Book";
+$font-bold : "Roboto-Bold";
+
+$line_height: 1.4;
+
+$distance: 60px;
+$distance_mobile: 30px;
+
+/// Container's maximum width
+/// @type Length
+$max-width: 1180px !default;
+
+/// Breakpoints map
+/// @prop {String} keys - Keys are identifiers mapped to a given length
+/// @prop {Map} values - Values are actual breakpoints expressed in pixels
+$breakpoints: (
+    'xl': 1200px,
+    'lg': 992px,
+    'md': 768px,
+    'sm': 576px
+) !default;
+
+/// Relative or absolute URL where all assets are served from
+/// @type String
+/// @example scss - When using a CDN
+/// $base-url: 'http://cdn.example.com/assets/';
+$base-url: '/assets' !default;
+$img-url: '../../../images';
+$font-url: '../../../fonts';
+$bower-url: '../../bower_components';

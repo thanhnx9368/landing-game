@@ -1,0 +1,10 @@
+{
+    "name": "Base",
+    "version": "0.0.1",
+    "dependencies": {
+	    "jquery": "",
+	    "font-awesome": "^4.7.0",
+	    "slick-carousel": "^1.8.1"
+    },
+    "private": true
+}

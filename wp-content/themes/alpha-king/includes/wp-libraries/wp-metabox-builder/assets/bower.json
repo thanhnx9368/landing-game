@@ -1,0 +1,21 @@
+{
+  "name": "metabox builder",
+  "authors": [
+    "huytv"
+  ],
+  "description": "Metabox Builder metadata in Wordpress",
+  "main": "bower.json",
+  "keywords": [
+    "tu",
+    "init",
+    "js",
+    "css"
+  ],
+  "license": "tu",
+  "homepage": "",
+  "private": true,
+  "devDependencies": {
+    "tu-stylesheets-init": "*",
+    "jquery-ui": "^1.12.1"
+  }
+}
