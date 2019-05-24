@@ -48,10 +48,11 @@
 				<div class="form-group">
 					<label for="contact_phone">Điện thoại</label>
 					<input type="tel" class="form-control" id="contact_phone" name="contact_phone" value="">
+                    <div class="form-group-msg" id="phone_msg"></div>
 					<p>*Chỉ dành cho khách hàng có đặt chỗ booking*</p>
 				</div>
 				<div class="form-group">
-					<button type="button" class="btn-submit">Gửi đi</button>
+					<button type="button" id="form_submit" class="btn-submit">Gửi đi</button>
 				</div>
 			</div>
 		</form>
@@ -59,10 +60,11 @@
 </main>
 <div class="wheel-of-fortune">
 	<div class="popup">
-		<?php include_once (TEMPLATE_PATH.'/assets/images/landing-page/grade_1.svg'); ?>
-		<?php include_once (TEMPLATE_PATH.'/assets/images/landing-page/grade_2.svg'); ?>
-		<?php include_once (TEMPLATE_PATH.'/assets/images/landing-page/grade_3.svg'); ?>
-		<div class="button-action" id="button-action">Quay may mắn</div>
+        <script src="wp-content/themes/alpha-king/assets/scripts/game.js"></script>
+       <!-- <?php /*include_once (TEMPLATE_PATH.'/assets/images/landing-page/grade_1.svg'); */?>
+		<?php /*include_once (TEMPLATE_PATH.'/assets/images/landing-page/grade_2.svg'); */?>
+		--><?php /*include_once (TEMPLATE_PATH.'/assets/images/landing-page/grade_3.svg'); */?>
+		<div class="button-action" id="button-action" onclick="start()">Quay may mắn</div>
 	</div>
 	<div class="popup-confirm" style="display: none;">
 		<div class="content">
@@ -84,6 +86,7 @@
 	</div>
 </div>
 <div class="overlay"></div>
+
 <script> 
 	jQuery(document).ready(function($) {
 		//js css decor:
@@ -117,7 +120,7 @@
 		});
 
 		//js quay giải thưởng
-		var wheel = document.querySelector("#grade_1"),
+		/*var wheel = document.querySelector("#grade_1"),
 		button = document.querySelector("#button-action"),
 		rando = 0;
 		var spin_wheel = function () {
@@ -127,8 +130,40 @@
 			wheel.style.msTransform = "rotate(" + rando + "deg)";
 			wheel.style.transform = "rotate(" + rando + "deg)";
 		}
-		button.addEventListener("click", spin_wheel, false);
+		button.addEventListener("click", spin_wheel, false);*/
 
-	});  
+
+        function validatePhonenumber(number) {
+            var re = /\(?([0-9]{3})\)?([ .-]?)([0-9]{3})\2([0-9]{4})/ ;
+            return re.test(String(number));
+        }
+        var formButton = $('#form_submit').find('button');
+
+        $('#contact_phone').change(function (event) {
+            var phone_text = $(this).val();
+            var count_number = phone_text.length;
+            var phone_msg = $('body').find('#phone_msg');
+
+            if ( !validatePhonenumber(phone_text) && phone_text || count_number > 11 ) {
+                phone_msg.text('Số điện thoại không hợp lệ !');
+                formButton.css("cursor", "not-allowed");
+                formButton.prop('disabled', true);
+            } else {
+                phone_msg.text('');
+                formButton.css("cursor", "pointer");
+                formButton.prop('disabled', false);
+            }
+        });
+
+        $('#form_submit').submit(function (event) {
+            event.preventDefault();
+            var form = $(this);
+
+
+
+        });
+
+
+    });
 </script> 
 <?php get_footer(); ?>
