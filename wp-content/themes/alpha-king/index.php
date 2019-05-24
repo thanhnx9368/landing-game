@@ -60,10 +60,7 @@
 </main>
 <div class="wheel-of-fortune">
 	<div class="popup">
-        <script src="wp-content/themes/alpha-king/assets/scripts/game.js"></script>
-       <!-- <?php /*include_once (TEMPLATE_PATH.'/assets/images/landing-page/grade_1.svg'); */?>
-		<?php /*include_once (TEMPLATE_PATH.'/assets/images/landing-page/grade_2.svg'); */?>
-		--><?php /*include_once (TEMPLATE_PATH.'/assets/images/landing-page/grade_3.svg'); */?>
+        <div id="gameDiv"></div>
 		<div class="button-action" id="button-action" onclick="start()">Quay may mắn</div>
 	</div>
 	<div class="popup-confirm" style="display: none;">
@@ -87,7 +84,7 @@
 </div>
 <div class="overlay"></div>
 
-<script> 
+<script>
 	jQuery(document).ready(function($) {
 		//js css decor:
 		var width_content = $('body').width();
@@ -138,11 +135,12 @@
             return re.test(String(number));
         }
         var formButton = $('#form_submit').find('button');
+        var phone_msg = $('body').find('#phone_msg');
+
 
         $('#contact_phone').change(function (event) {
             var phone_text = $(this).val();
             var count_number = phone_text.length;
-            var phone_msg = $('body').find('#phone_msg');
 
             if ( !validatePhonenumber(phone_text) && phone_text || count_number > 11 ) {
                 phone_msg.text('Số điện thoại không hợp lệ !');
@@ -155,9 +153,22 @@
             }
         });
 
-        $('#form_submit').submit(function (event) {
+        formButton.submit(function (event) {
             event.preventDefault();
+            console.log('ok');
+
             var form = $(this);
+            let contactNameValue = $('#contact_name').val();
+
+            console.log(contactNameValue, 'step 1');
+            if ( !contactNameValue || contactNameValue === '' || contactNameValue === null ) {
+                phone_msg.text('Vui họ tên !');
+                formButton.css("cursor", "not-allowed");
+                formButton.prop('disabled', true);
+                return
+            }
+            console.log(contactNameValue, 'step 2');
+
 
 
 

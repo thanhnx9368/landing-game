@@ -11,7 +11,7 @@ var that;
 
 window.onload = function() {
 
-    game = new Phaser.Game(500, 500, Phaser.Auto, "wheel", null, true);
+    game = new Phaser.Game(500, 500, Phaser.CANVAS, 'gameDiv');
 
     game.state.add("PlayGame", playGame);
     game.state.start("PlayGame");
