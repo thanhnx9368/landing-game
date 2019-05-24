@@ -11,23 +11,24 @@
 	</div>
 	<div class="slide-banner">
 		<div class="slide-item" id="slider-for-banner">
-			<div class="slide"><img src="<?php echo IMAGE_URL.'/landing-page/test.png'; ?>" alt="alphaking"></div>
-			<div class="slide"><img src="<?php echo IMAGE_URL.'/landing-page/test.png'; ?>" alt="alphaking"></div>
-			<div class="slide"><img src="<?php echo IMAGE_URL.'/landing-page/test.png'; ?>" alt="alphaking"></div>
-			<div class="slide"><img src="<?php echo IMAGE_URL.'/landing-page/test.png'; ?>" alt="alphaking"></div>
-			<div class="slide"><img src="<?php echo IMAGE_URL.'/landing-page/test.png'; ?>" alt="alphaking"></div>
+			<div class="slide" style="background-image: url(<?php echo IMAGE_URL.'/landing-page/banner.png'; ?>);"></div>
+			<div class="slide" style="background-image: url(<?php echo IMAGE_URL.'/landing-page/banner.png'; ?>);"></div>
+			<div class="slide" style="background-image: url(<?php echo IMAGE_URL.'/landing-page/banner.png'; ?>);"></div>
+			<div class="slide" style="background-image: url(<?php echo IMAGE_URL.'/landing-page/banner.png'; ?>);"></div>
+			<div class="slide" style="background-image: url(<?php echo IMAGE_URL.'/landing-page/banner.png'; ?>);"></div>
 		</div>
 		<div class="slide-item" id="slider-nav-banner">
-			<div class="slide" style="background-image: url(<?php echo IMAGE_URL.'/landing-page/test.png'; ?>);"></div>
-			<div class="slide" style="background-image: url(<?php echo IMAGE_URL.'/landing-page/test.png'; ?>);"></div>
-			<div class="slide" style="background-image: url(<?php echo IMAGE_URL.'/landing-page/test.png'; ?>);"></div>
-			<div class="slide" style="background-image: url(<?php echo IMAGE_URL.'/landing-page/test.png'; ?>);"></div>
-			<div class="slide" style="background-image: url(<?php echo IMAGE_URL.'/landing-page/test.png'; ?>);"></div>
+			<div class="slide" style="background-image: url(<?php echo IMAGE_URL.'/landing-page/banner.png'; ?>);"></div>
+			<div class="slide" style="background-image: url(<?php echo IMAGE_URL.'/landing-page/banner.png'; ?>);"></div>
+			<div class="slide" style="background-image: url(<?php echo IMAGE_URL.'/landing-page/banner.png'; ?>);"></div>
+			<div class="slide" style="background-image: url(<?php echo IMAGE_URL.'/landing-page/banner.png'; ?>);"></div>
+			<div class="slide" style="background-image: url(<?php echo IMAGE_URL.'/landing-page/banner.png'; ?>);"></div>
 		</div>
 	</div>
 	<div class="content">
-		<div class="background" style="background-image: url(<?php echo IMAGE_URL.'/landing-page/test.png'; ?>);"></div>
+		<div class="background" style="background-image: url(<?php echo IMAGE_URL.'/landing-page/screen-2.jpg'; ?>);"></div>
 		<div class="decor-content"></div>
+		<div class="decor-bottom"></div>
 		<div class="title">
 			<p>HOẠT ĐỘNG tháng 6</p> 
 			<p>Nụ cười bé thơ </p>
@@ -57,6 +58,7 @@
 			</div>
 		</form>
 	</div>
+	<div class="copyright">© 2019 Alpha King. All Right Reserved</div>
 </main>
 <div class="wheel-of-fortune">
 	<div class="popup">
@@ -89,6 +91,11 @@
 		//js css decor:
 		var width_content = $('body').width();
 		$('.decor-name, .decor-content').css('border-left-width' , width_content);
+		$('.decor-bottom').css('border-right-width' , (width_content*70)/100);
+
+		var nav_slide = -($('#slider-nav-banner').height() - 118)/2;
+		console.log(nav_slide);
+		$('#slider-nav-banner').css('top' , nav_slide);
 
 		//js slide banner:
 		$('#slider-for-banner').slick({
