@@ -3,8 +3,110 @@
 // -----------------------------------------------------------------------------
 
 @font-face {
-    font-family: 'VLEncorpadaClassic';
-    src: url('../../../fonts/VL_dooType-EncorpadaClassic.otf')  format('opentype');
+    font-family: "MONTSERRAT-BLACK";
+    src: url("../../../fonts/MONTSERRAT-BLACK.ttf") format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+@font-face {
+    font-family: "MONTSERRAT-BLACKITALIC";
+    src: url("../../../fonts/MONTSERRAT-BLACKITALIC.ttf") format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+@font-face {
+    font-family: "MONTSERRAT-BOLD";
+    src: url("../../../fonts/MONTSERRAT-BOLD.ttf") format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+@font-face {
+    font-family: "MONTSERRAT-BOLDITALIC";
+    src: url("../../../fonts/MONTSERRAT-BOLDITALIC.ttf") format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+@font-face {
+    font-family: "MONTSERRAT-EXTRABOLD";
+    src: url("../../../fonts/MONTSERRAT-EXTRABOLD.ttf") format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+@font-face {
+    font-family: "MONTSERRAT-EXTRABOLDITALIC";
+    src: url("../../../fonts/MONTSERRAT-EXTRABOLDITALIC.ttf") format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+@font-face {
+    font-family: "MONTSERRAT-EXTRALIGHT";
+    src: url("../../../fonts/MONTSERRAT-EXTRALIGHT.ttf") format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+@font-face {
+    font-family: "MONTSERRAT-EXTRALIGHTITALIC";
+    src: url("../../../fonts/MONTSERRAT-EXTRALIGHTITALIC.ttf") format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+@font-face {
+    font-family: "MONTSERRAT-ITALIC";
+    src: url("../../../fonts/MONTSERRAT-ITALIC.ttf") format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+@font-face {
+    font-family: "MONTSERRAT-LIGHT";
+    src: url("../../../fonts/MONTSERRAT-LIGHT.ttf") format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+@font-face {
+    font-family: "MONTSERRAT-LIGHTITALIC";
+    src: url("../../../fonts/MONTSERRAT-LIGHTITALIC.ttf") format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+@font-face {
+    font-family: "MONTSERRAT-MEDIUM";
+    src: url("../../../fonts/MONTSERRAT-MEDIUM.ttf") format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+@font-face {
+    font-family: "MONTSERRAT-MEDIUMITALIC";
+    src: url("../../../fonts/MONTSERRAT-MEDIUMITALIC.ttf") format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+@font-face {
+    font-family: "MONTSERRAT-REGULAR";
+    src: url("../../../fonts/MONTSERRAT-REGULAR.ttf") format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+@font-face {
+    font-family: "MONTSERRAT-SEMIBOLD";
+    src: url("../../../fonts/MONTSERRAT-SEMIBOLD.ttf") format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+@font-face {
+    font-family: "MONTSERRAT-SEMIBOLDITALIC";
+    src: url("../../../fonts/MONTSERRAT-SEMIBOLDITALIC.ttf") format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+@font-face {
+    font-family: "MONTSERRAT-THIN";
+    src: url("../../../fonts/MONTSERRAT-THIN.ttf") format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+@font-face {
+    font-family: "MONTSERRAT-THINITALIC";
+    src: url("../../../fonts/MONTSERRAT-THINITALIC.ttf") format('truetype');
     font-weight: normal;
     font-style: normal;
 }

@@ -1,0 +1,439 @@
+.landing-page{
+	position: relative;
+	background: #1a181a;
+	padding: 50px 0px 20px;
+	overflow: hidden;
+	.logo{
+		display: block;
+		margin: 0px 0px 38px;
+		img{
+			display: block;
+			max-width: 100%;
+			height: auto;
+			margin: 0 auto;
+		}
+	}
+	.program-name{
+		position: relative;
+		padding: 0px 15px 20px;
+		.decor-name{
+			position: absolute;
+			content: '';
+			left: 0;
+			bottom: -45px;
+			right: 0;
+			height: 0;
+			border-bottom: 45px solid #1a181a;
+			border-left: 0px solid transparent;
+			border-right: 0px solid transparent;
+			z-index: 1;
+			@include transform(rotate(180deg));
+		}
+		.title{
+			font-family: "MONTSERRAT-REGULAR";
+			font-size: 12.56px;
+			color: #ffffff;
+			text-transform: uppercase;
+			text-align: center;
+		}
+		.name{
+			width: max-content;
+			width: -moz-max-content;
+			margin: 2px auto 0px;
+			p{
+				position: relative;
+				font-family: "MONTSERRAT-BOLD";
+				font-size: 23.88px;
+				text-align: center;
+				text-transform: uppercase;
+				background: linear-gradient(50deg, #83531f 0%, #a06d33 20%, #a06d33 25%, #c0894a 44%, #d69c59 63%, #ba844b 57%, #ba844b 69%, #a06d33 100%);
+				-webkit-background-clip: text;
+				-webkit-text-fill-color: transparent;
+				margin-bottom: 0px;
+				@include mediaMaxWidth(320px){
+					font-size: 21px;
+				}
+				&:nth-of-type(2){
+					top: -4px;
+				}
+			}
+		}
+	}
+	.slide-banner{
+		position: relative;
+		margin-bottom: -20px;
+		&:before{
+			position: absolute;
+			content: '';
+			left: 0;
+			bottom: 0;
+			right: 0;
+			background: #201e20;
+			height: 65%;
+		}
+		.slide-item{
+			&:nth-of-type(2){
+				position: relative;
+				top: -32px;
+				width: 100%;
+				padding: 0px 15px;
+				margin: 0 auto;
+				.slick-list{
+					margin: 0 -5px;
+					padding-bottom: 15px;
+					.slick-slide{
+						margin: 0 5px;
+						padding-top: 17.753%;
+						border: 1px solid #ffffff;
+						border-radius: 1px;
+						&.slick-current{
+							border: 1px solid #d39957;
+							box-shadow: 0px 5px 15px #0f0e0f;
+						}
+					}
+				}
+				
+			}
+			.slick-prev, .slick-next{
+				display: none !important;
+			}
+			.slide{
+				@include backgroundCoverCenter;
+				background-repeat: no-repeat;
+				outline: none !important;
+				img{
+					display: block;
+					width: 100%;
+					height: auto;
+				}
+			}
+		}
+	}
+	.content{
+		position: relative;
+		padding: 100px 0px 60px;
+		&:before{
+			@include absoluteFull;
+			content: '';
+			background: #815e42;
+			z-index: 1;
+			opacity: 0.82;
+		}
+		&:after{
+			position: absolute;
+			content: '';
+			left: 0;
+			right: 0;
+			bottom: 0;
+			top: 0;
+			background-image: url('../../../images/landing-page/pattern.png');
+			background-size: cover;
+			background-position: 100% top;
+			background-repeat: no-repeat;
+		}
+		.background{
+			@include absoluteFull;
+			content: '';
+			filter: grayscale(100%);
+		}
+		.decor-content{
+			position: absolute;
+			content: '';
+			left: 0;
+			top: 0px;
+			right: 0;
+			height: 0;
+			border-bottom: 85px solid #201e20;
+			border-left: 0px solid transparent;
+			border-right: 0px solid transparent;
+			z-index: 1;
+			@include transform(rotate(180deg));
+		}
+		.title{
+			position: relative;
+			padding: 0px 15px;
+			z-index: 1;
+			p{
+				font-family: "MONTSERRAT-REGULAR";
+				text-align: center;
+				color: #ffe9b2;
+				font-size: 16px;
+				margin-bottom: 0px;
+				&:nth-of-type(1){
+					text-transform: uppercase;
+					font-family: "MONTSERRAT-BOLD";
+					font-size: 21px;
+				}
+			}
+		}
+		.desc{
+			position: relative;
+			padding: 0px 30px;
+			margin-top: 25px;
+			z-index: 1;
+			p{
+				font-family: "MONTSERRAT-REGULAR";
+				font-size: 14.5px;
+				color: #ffffff;
+				text-align: center;
+				line-height: 24px;
+				margin-bottom: 20px;
+				a{
+					color: #ffe9b2;
+				}
+			}
+		}
+	}
+	.form{
+		position: relative;
+		padding: 70px 30px 0px;
+		&:before{
+			position: absolute;
+			content: '';
+			left: 0;
+			top: -45px;
+			right: 0;
+			height: 0;
+			border-top: 45px solid transparent;
+			border-right: 0px solid transparent;
+			border-left: 200px solid #1a181a;
+			z-index: 3;
+		}
+		.form-contact{
+			.form-field-all{
+				.form-group{
+					margin-bottom: 40px;
+					&:nth-of-type(3){
+						text-align: center;
+					}
+					label{
+						width: 100%;
+						font-family: "MONTSERRAT-MEDIUM";
+						color: #fff;
+						font-size: 15px;
+						margin-bottom: 10px;
+						span{
+							font-family: "MONTSERRAT-LIGHTITALIC";
+							font-size: 12px;
+						}
+					}
+					input{
+						width: 100%;
+						padding: 0;
+						height: 45px;
+						border: 1px solid #fff;
+						border-radius: 3px;
+						font-family: "MONTSERRAT-MEDIUM";
+						font-size: 16px;
+						color: #c38d55;
+						padding: 0px 15px;
+						&:focus{
+							border: 1px solid #d39957;
+							box-shadow: 0px 0px 10px rgba(225,225,225,.4);
+						}
+					}
+					p{
+						font-family: "MONTSERRAT-LIGHTITALIC";
+						font-size: 12px;
+						color: #ffffff;
+						margin-top: 6px;
+					}
+					button{
+						font-family: "MONTSERRAT-BOLD";
+						font-size: 15px;
+						text-transform: uppercase;
+						color: #343234;
+						width: 155px;
+						height: 39px;
+						background-image: url('../../../images/landing-page/bg--submit.png');
+						@include backgroundCoverCenter;
+						background-repeat: no-repeat;
+						background-color: initial;
+						border: none;
+						outline: none !important;
+					}
+				}
+			}
+		}
+	}
+}
+.wheel-of-fortune{
+	@include absoluteItemCenter;
+	position: fixed;
+	width: 100%;
+	margin: 0 auto;
+	z-index: 10;
+	display: none;
+	svg{
+		position: absolute;
+		width: 100%;
+		&.grade_3{
+			position: static;
+			top: 0;
+			left: 0;
+		}
+		&.grade_2{
+			top: 0;
+			left: 0;
+			z-index: 1;
+			margin-top: 30px;
+			margin-left: 1px;
+		}
+		&.grade_1{
+			top: 0;
+			left: 0;
+			margin-top: 65px;
+			z-index: 1;
+			transition: transform 10s cubic-bezier(.5,.1,.15,1);
+		}
+	}
+	.button-action{
+		margin-top: 28px;
+		margin: 0 auto;
+		text-align: center;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		font-family: "MONTSERRAT-BOLD";
+		font-size: 15px;
+		text-transform: uppercase;
+		color: #343234;
+		width: 155px;
+		height: 39px;
+		background-image: url('../../../images/landing-page/bg--submit.png');
+		@include backgroundCoverCenter;
+		background-repeat: no-repeat;
+	}
+	.popup-confirm{
+		padding: 0px 15px;
+		border-radius: 4px;
+		.content{
+			display: flex;
+			position: relative;
+			overflow: hidden;
+			background-image: url('../../../images/landing-page/bg-popup.png');
+			background-size: cover;
+			background-position: center top;
+			background-repeat: no-repeat;
+			@include mediaMaxWidth(320px){
+				flex-direction: column;
+			}
+			.left{
+				width: percentage(147/348);
+				float: left;
+				background-color: #2f2922;
+				@include mediaMaxWidth(320px){
+					width: 100%;
+				}
+				.img{
+					width: 100%;
+					img{
+						display: block;
+						width: 100%;
+						height: auto;
+					}
+				}
+				.title{
+					font-family: "MONTSERRAT-BOLD";
+					font-size: 11px;
+					text-transform: uppercase;
+					text-align: center;
+					background: linear-gradient(50deg, #83531f 0%, #a06d33 20%, #a06d33 25%, #c0894a 44%, #d69c59 63%, #ba844b 57%, #ba844b 69%, #a06d33 100%);
+					width: max-content;
+					width: -moz-max-content;
+					-webkit-background-clip: text;
+					-webkit-text-fill-color: transparent;
+					margin: 0 auto;
+					padding: 10px;
+				}
+			}
+			.right{
+				display: flex;
+				flex-direction: column;
+				align-items: center;
+				justify-content: center;
+				width: percentage(201/348);
+				float: left;
+				padding: 10px 15px;
+				@include mediaMaxWidth(320px){
+					width: 100%;
+				}
+				.tag{
+					font-family: "MONTSERRAT-SEMIBOLD";
+					font-size: 11px;
+					text-align: center;
+					color: #eac696;
+				}
+				.thankyou{
+					font-family: "MONTSERRAT-MEDIUM";
+					font-size: 10px;
+					text-align: center;
+					color: #222222;
+					padding: 5px 0px;
+					line-height: 17px;
+				}
+				.name{
+					font-family: "MONTSERRAT-EXTRABOLD";
+					font-size: 13.5px;
+					text-transform: uppercase;
+					text-align: center;
+					color: #2c2a2a;
+				}
+				.prize{
+					text-align: center;
+					background: #cc952a;
+					background: -moz-linear-gradient(top,  #cc952a 0%, #dea42b 8%, #f1b545 15%, #f3be51 19%, #f5d96d 35%, #f5d96d 54%, #f4bc5d 69%, #efb356 73%, #e3a84b 81%, #daa049 85%, #ae822a 100%); 
+					background: -webkit-linear-gradient(top,  #cc952a 0%,#dea42b 8%,#f1b545 15%,#f3be51 19%,#f5d96d 35%,#f5d96d 54%,#f4bc5d 69%,#efb356 73%,#e3a84b 81%,#daa049 85%,#ae822a 100%);
+					background: linear-gradient(to bottom,  #cc952a 0%,#dea42b 8%,#f1b545 15%,#f3be51 19%,#f5d96d 35%,#f5d96d 54%,#f4bc5d 69%,#efb356 73%,#e3a84b 81%,#daa049 85%,#ae822a 100%); 
+					filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#cc952a', endColorstr='#ae822a',GradientType=0 ); /* IE6-9 */
+					-webkit-background-clip: text;
+					-webkit-text-fill-color: transparent;
+					font-family: "MONTSERRAT-BOLD";
+					font-size: 35px;
+				}
+			}
+		}
+		.button{
+			display: flex;
+			justify-content: center;
+			@include mediaMaxWidth(320px){
+				    flex-direction: column;
+    align-items: center;
+			}
+			.btn-confirm, .btn-share{
+				text-align: center;
+				display: flex;
+				align-items: center;
+				justify-content: center;
+				font-family: "MONTSERRAT-BOLD";
+				font-size: 15px;
+				text-transform: uppercase;
+				color: #343234;
+				width: 155px;
+				height: 39px;
+				background-image: url('../../../images/landing-page/bg--submit.png');
+				@include backgroundCoverCenter;
+				background-repeat: no-repeat;
+				margin-right: 7px;
+				margin-top: 25px;
+
+			}
+			.btn-share{
+				margin-right: 0px;
+				@include mediaMaxWidth(320px){
+					margin-top: 15px;
+				}
+			}
+		}
+	}
+}
+.overlay{
+	position: fixed;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	z-index: 9;
+	background-color: rgba(0,0,0,.92);
+	display: none;
+}
