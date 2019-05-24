@@ -58,13 +58,13 @@
 	</div>
 </main>
 <div class="wheel-of-fortune">
-	<div class="popup" style="display: none;">
+	<div class="popup">
 		<?php include_once (TEMPLATE_PATH.'/assets/images/landing-page/grade_1.svg'); ?>
 		<?php include_once (TEMPLATE_PATH.'/assets/images/landing-page/grade_2.svg'); ?>
 		<?php include_once (TEMPLATE_PATH.'/assets/images/landing-page/grade_3.svg'); ?>
 		<div class="button-action" id="button-action">Quay may mắn</div>
 	</div>
-	<div class="popup-confirm">
+	<div class="popup-confirm" style="display: none;">
 		<div class="content">
 			<div class="left">
 				<div class="img"><img src="<?php echo IMAGE_URL.'/landing-page/test.png'; ?>" alt="alphaking"></div>
