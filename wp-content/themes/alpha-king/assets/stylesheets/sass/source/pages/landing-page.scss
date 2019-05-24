@@ -142,6 +142,8 @@ canvas {
 			@include absoluteFull;
 			content: '';
 			filter: grayscale(100%);
+			@include backgroundCoverCenter;
+			background-repeat: no-repeat;
 		}
 		.decor-content{
 			position: absolute;
