@@ -12,6 +12,7 @@ canvas {
 	overflow: hidden;
 	@include mediaMaxWidth(768px){
 		padding-top: 50px;
+		background: #1a181a; 
 	}
 	.logo{
 		display: block;
@@ -58,6 +59,7 @@ canvas {
 			display: none;
 			@include mediaMaxWidth(768px){
 				display: block;
+				border-bottom: 45px solid #1a181a;  
 			}
 		}
 		.title{
@@ -113,7 +115,7 @@ canvas {
 		.slide-item{
 			&:nth-of-type(2){
 				position: relative;
-				// top: -32px;
+				top: -40px;
 				margin: 0 auto;
 				width: percentage(352/1366);
 				@include mediaMaxWidth(768px){
@@ -205,7 +207,8 @@ canvas {
 			@include absoluteFull;
 			content: '';
 			filter: grayscale(100%);
-			@include backgroundCoverCenter;
+			background-size: cover;
+			background-position: right center;
 			background-repeat: no-repeat;
 		}
 		.decor-content{
@@ -235,6 +238,9 @@ canvas {
 			border-right: 0px solid transparent;
 			border-bottom: 105px solid #1d1b1d;
 			z-index: 1;
+			@include mediaMaxWidth(768px){
+				border-bottom: 45px solid #1a181a;
+			}
 		}
 		.title{
 			position: relative;
@@ -364,6 +370,102 @@ canvas {
 						background-color: initial;
 						border: none;
 						outline: none !important;
+						cursor: pointer;
+					}
+				}
+			}
+		}
+	}
+	.contribution-list{
+		position: relative;
+		width: percentage(815/1366);
+		margin: 50px auto 0px;
+		@include mediaMaxWidth(768px){
+			width: calc(100% - 60px);
+		}
+		@include mediaMaxWidth(480px){
+			width: calc(100% - 30px);
+			margin-top: 30px;
+		}
+		.title{
+			background: #a1703e; 
+			background: -moz-linear-gradient(left,  #a1703e 0%, #b27d47 3%, #ba844b 5%, #ba844b 30%, #d39958 41%, #d69c59 46%, #cf9654 51%, #c0894a 57%, #a77338 73%, #a06d33 79%, #a06d33 100%); 
+			background: -webkit-linear-gradient(left,  #a1703e 0%,#b27d47 3%,#ba844b 5%,#ba844b 30%,#d39958 41%,#d69c59 46%,#cf9654 51%,#c0894a 57%,#a77338 73%,#a06d33 79%,#a06d33 100%); 
+			background: linear-gradient(to right,  #a1703e 0%,#b27d47 3%,#ba844b 5%,#ba844b 30%,#d39958 41%,#d69c59 46%,#cf9654 51%,#c0894a 57%,#a77338 73%,#a06d33 79%,#a06d33 100%); 
+			filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#a1703e', endColorstr='#a06d33',GradientType=1 );
+			font-family: "MONTSERRAT-BOLD";
+			font-size: 29px;
+			text-align: center;
+			text-transform: uppercase;
+			-webkit-background-clip: text;
+			-webkit-text-fill-color: transparent;
+			width: max-content;
+			width: -moz-max-content;
+			margin: 0 auto;
+			@include mediaMaxWidth(768px){
+				font-size: 21px;
+			}
+		}
+		.list{
+			margin: 45px auto 0px;
+			width: 100%;
+			max-height: 463px;
+			@include mediaMaxWidth(480px){
+				margin-top: 25px;
+			}
+			.fm{
+				border: 1px solid #3c3c3c;
+
+			}
+			.head{
+				background: -moz-linear-gradient(left,  #a1703e 0%, #b27d47 3%, #ba844b 5%, #ba844b 30%, #d39958 41%, #d69c59 46%, #cf9654 51%, #c0894a 57%, #a77338 73%, #a06d33 79%, #a06d33 100%); 
+				background: -webkit-linear-gradient(left,  #a1703e 0%,#b27d47 3%,#ba844b 5%,#ba844b 30%,#d39958 41%,#d69c59 46%,#cf9654 51%,#c0894a 57%,#a77338 73%,#a06d33 79%,#a06d33 100%); 
+				background: linear-gradient(to right,  #a1703e 0%,#b27d47 3%,#ba844b 5%,#ba844b 30%,#d39958 41%,#d69c59 46%,#cf9654 51%,#c0894a 57%,#a77338 73%,#a06d33 79%,#a06d33 100%); 
+				filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#a1703e', endColorstr='#a06d33',GradientType=1 );
+				padding: 0px 50px;
+				display: flex;
+				align-items: center;
+				height: 33px;
+				@include mediaMaxWidth(480px){
+					padding: 0px 15px;
+				}
+				p{
+					font-family: "MONTSERRAT-SEMIBOLD";
+					font-size: 15px;
+					color: #1d1b1d;
+					width: 60%;
+					margin-bottom: 0px;
+					&:nth-of-type(2){
+						width: 40%;
+						text-align: right;
+					}
+				}
+			}
+			.contribution-content{
+				.item{
+					display: flex;
+					padding: 8px 50px;
+					border-bottom: 1px solid #3c3c3c;
+					@include mediaMaxWidth(480px){
+						padding: 8px 15px;
+					}
+					&:last-child{
+						border-bottom: none;
+					}
+					p{
+						width: 60%;
+						font-family: "MONTSERRAT-MEDIUM";
+						font-size: 15px;
+						color: #ffffff;
+						text-transform: uppercase;
+						margin-bottom: 0px;
+						&:nth-of-type(2){
+							width: 40%;
+							text-align: right;
+						}
+						@include mediaMaxWidth(480px){
+							font-size: 14.5px;
+						}
 					}
 				}
 			}
@@ -378,37 +480,19 @@ canvas {
 		clear: both;
 		background-color: #1d1b1d;
 		text-align: center;
+		@include mediaMaxWidth(768px){
+			background: #1a181a; 
+		}
 	}
 }
 .wheel-of-fortune{
 	@include absoluteItemCenter;
 	position: fixed;
-	width: 100%;
 	margin: 0 auto;
 	z-index: 10;
 	display: none;
-	svg{
-		position: absolute;
-		width: 100%;
-		&.grade_3{
-			position: static;
-			top: 0;
-			left: 0;
-		}
-		&.grade_2{
-			top: 0;
-			left: 0;
-			z-index: 1;
-			margin-top: 30px;
-			margin-left: 1px;
-		}
-		&.grade_1{
-			top: 0;
-			left: 0;
-			margin-top: 65px;
-			z-index: 1;
-			transition: transform 10s cubic-bezier(.5,.1,.15,1);
-		}
+	@include mediaMaxWidth(480px){
+		width: calc(100% - 30px);
 	}
 	.button-action{
 		margin-top: 28px;
@@ -426,94 +510,107 @@ canvas {
 		background-image: url('../../../images/landing-page/bg--submit.png');
 		@include backgroundCoverCenter;
 		background-repeat: no-repeat;
+		cursor: pointer;
 	}
 	.popup-confirm{
-		padding: 0px 15px;
 		border-radius: 4px;
+		width: max-content;
+		width: -moz-max-content;
+		margin: 0 auto;
+		@include mediaMaxWidth(480px){
+			width: 100%;
+			padding: 0px 15px;
+		}
 		.content{
-			display: flex;
 			position: relative;
 			overflow: hidden;
-			background-image: url('../../../images/landing-page/bg-popup.png');
-			background-size: cover;
-			background-position: center top;
 			background-repeat: no-repeat;
-			@include mediaMaxWidth(320px){
-				flex-direction: column;
-			}
-			.left{
-				width: percentage(147/348);
-				float: left;
-				background-color: #2f2922;
-				@include mediaMaxWidth(320px){
-					width: 100%;
-				}
-				.img{
-					width: 100%;
-					img{
-						display: block;
-						width: 100%;
-						height: auto;
-					}
-				}
-				.title{
-					font-family: "MONTSERRAT-BOLD";
-					font-size: 11px;
-					text-transform: uppercase;
-					text-align: center;
-					background: linear-gradient(50deg, #83531f 0%, #a06d33 20%, #a06d33 25%, #c0894a 44%, #d69c59 63%, #ba844b 57%, #ba844b 69%, #a06d33 100%);
-					width: max-content;
-					width: -moz-max-content;
-					-webkit-background-clip: text;
-					-webkit-text-fill-color: transparent;
-					margin: 0 auto;
-					padding: 10px;
+			max-width: 280px;
+			margin: 0 auto;
+			._fm{
+				position: absolute;
+				left: 50%;
+				@include transform(translateX(-50%));
+				top: 0;
+				margin-top: 62%;
+				padding: 0px 30px;
+				width: 100%;
+				@include mediaMaxWidth(480px){
+					padding: 0px 15px;
+					margin-top: 60%;
 				}
 			}
-			.right{
-				display: flex;
-				flex-direction: column;
-				align-items: center;
-				justify-content: center;
-				width: percentage(201/348);
-				float: left;
-				padding: 10px 15px;
-				@include mediaMaxWidth(320px){
+			.img{
+				width: 100%;
+				img{
+					display: block;
 					width: 100%;
+					height: auto;
 				}
-				.tag{
-					font-family: "MONTSERRAT-SEMIBOLD";
-					font-size: 11px;
-					text-align: center;
-					color: #eac696;
+			}
+			.title{
+				font-family: "MONTSERRAT-BOLD";
+				font-size: 16px;
+				text-transform: uppercase;
+				text-align: center;
+				width: max-content;
+				width: -moz-max-content;
+				margin: 0 auto;
+				padding: 10px;
+				background: linear-gradient(100deg, #ffaa51 0%, #ffc054 44%, #ffd257 100%);
+				-webkit-background-clip: text;
+				-webkit-text-fill-color: transparent;
+				@include mediaMaxWidth(768px){
+					font-size: 13px;
 				}
-				.thankyou{
-					font-family: "MONTSERRAT-MEDIUM";
-					font-size: 10px;
-					text-align: center;
-					color: #222222;
-					padding: 5px 0px;
-					line-height: 17px;
-				}
-				.name{
+			}
+			.tag{
+				font-family: "MONTSERRAT-SEMIBOLD";
+				font-size: 11px;
+				text-align: center;
+				color: #ffffff;
+			}
+			.thankyou{
+				font-family: "MONTSERRAT-MEDIUM";
+				font-size: 10px;
+				text-align: center;
+				color: #2c2a2a;
+				padding: 10px 0px;
+				line-height: 17px;
+			}
+			.name{
+				
+				text-align: center;
+				color: #2c2a2a;
+				p{
 					font-family: "MONTSERRAT-EXTRABOLD";
 					font-size: 13.5px;
 					text-transform: uppercase;
-					text-align: center;
-					color: #2c2a2a;
+					margin-bottom: 0px;
+					&:nth-of-type(1){
+						font-family: "MONTSERRAT-MEDIUM";
+						font-size: 10px;
+						text-transform: initial;
+						margin-bottom: 3px;
+					}
 				}
-				.prize{
-					text-align: center;
-					background: #cc952a;
-					background: -moz-linear-gradient(top,  #cc952a 0%, #dea42b 8%, #f1b545 15%, #f3be51 19%, #f5d96d 35%, #f5d96d 54%, #f4bc5d 69%, #efb356 73%, #e3a84b 81%, #daa049 85%, #ae822a 100%); 
-					background: -webkit-linear-gradient(top,  #cc952a 0%,#dea42b 8%,#f1b545 15%,#f3be51 19%,#f5d96d 35%,#f5d96d 54%,#f4bc5d 69%,#efb356 73%,#e3a84b 81%,#daa049 85%,#ae822a 100%);
-					background: linear-gradient(to bottom,  #cc952a 0%,#dea42b 8%,#f1b545 15%,#f3be51 19%,#f5d96d 35%,#f5d96d 54%,#f4bc5d 69%,#efb356 73%,#e3a84b 81%,#daa049 85%,#ae822a 100%); 
-					filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#cc952a', endColorstr='#ae822a',GradientType=0 ); /* IE6-9 */
-					-webkit-background-clip: text;
-					-webkit-text-fill-color: transparent;
-					font-family: "MONTSERRAT-BOLD";
-					font-size: 35px;
-				}
+			}
+			.prize{
+				width: max-content;
+				width: -moz-max-content;
+				margin: 5px auto 0;
+				text-shadow: -0.2px 3px 4.9px rgba(0, 0, 0, 0.18);
+				background-image: linear-gradient(286deg, #ffe259, #ffa751), linear-gradient(to bottom, #000000, #000000);
+				font-family: "MONTSERRAT-BOLD";
+				font-size: 25px;
+				font-weight: bold;
+				font-style: normal;
+				font-stretch: normal;
+				letter-spacing: normal;
+				text-align: center;
+				color: #000000;
+				-webkit-background-clip: text;
+				-webkit-text-fill-color: transparent;
 			}
 		}
 		.button{
@@ -539,7 +636,10 @@ canvas {
 				background-repeat: no-repeat;
 				margin-right: 7px;
 				margin-top: 25px;
-
+				cursor: pointer;
+				@include mediaMaxWidth(480px){
+					margin-right: 0px;
+				}
 			}
 			.btn-share{
 				margin-right: 0px;
@@ -549,6 +649,10 @@ canvas {
 			}
 		}
 	}
+	canvas{
+		width: 100% !important;
+		height: 100% !important;
+	}
 }
 .overlay{
 	position: fixed;
@@ -557,6 +661,23 @@ canvas {
 	right: 0;
 	bottom: 0;
 	z-index: 9;
-	background-color: rgba(0,0,0,.92);
+	background-color: #141414;
 	display: none;
+	cursor: pointer;
+}
+.mCSB_scrollTools .mCSB_draggerRail{
+	width: 4px;
+	background-color: #363636;
+	border-radius: initial;
+	filter: initial;
+}
+.mCSB_scrollTools .mCSB_dragger .mCSB_dragger_bar{
+	width: 6px;
+	border-radius: initial;
+	background-color: #d69c59 !important;
+}
+.mCSB_inside > .mCSB_container{
+	@include mediaMaxWidth(480px){
+		margin-right: 20px;
+	}
 }

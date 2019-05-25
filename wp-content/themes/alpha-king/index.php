@@ -49,7 +49,7 @@
 				<div class="form-group">
 					<label for="contact_phone">Điện thoại</label>
 					<input type="tel" class="form-control" id="contact_phone" name="contact_phone" value="">
-                    <div class="form-group-msg" id="phone_msg"></div>
+					<div class="form-group-msg" id="phone_msg"></div>
 					<p>*Chỉ dành cho khách hàng có đặt chỗ booking*</p>
 				</div>
 				<div class="form-group">
@@ -58,24 +58,91 @@
 			</div>
 		</form>
 	</div>
+	<div class="contribution-list"  style="display: none;">
+		<div class="title">Danh sách đóng góp</div>
+		<div class="list" id="contribution-content">
+			<div class="fm">
+				<div class="head">
+					<p>Họ và tên</p>
+					<p>Số tiền</p>
+				</div>
+				<div class="contribution-content">
+					<div class="item">
+						<p>Hoàng Quỳnh Nga</p>
+						<p>500.000 VND</p>
+					</div>
+					<div class="item">
+						<p>Hoàng Quỳnh Nga</p>
+						<p>500.000 VND</p>
+					</div>
+					<div class="item">
+						<p>Hoàng Quỳnh Nga</p>
+						<p>500.000 VND</p>
+					</div>
+					<div class="item">
+						<p>Hoàng Quỳnh Nga</p>
+						<p>500.000 VND</p>
+					</div>
+					<div class="item">
+						<p>Hoàng Quỳnh Nga</p>
+						<p>500.000 VND</p>
+					</div>
+					<div class="item">
+						<p>Hoàng Quỳnh Nga</p>
+						<p>500.000 VND</p>
+					</div>
+					<div class="item">
+						<p>Hoàng Quỳnh Nga</p>
+						<p>500.000 VND</p>
+					</div>
+					<div class="item">
+						<p>Hoàng Quỳnh Nga</p>
+						<p>500.000 VND</p>
+					</div>
+					<div class="item">
+						<p>Hoàng Quỳnh Nga</p>
+						<p>500.000 VND</p>
+					</div>
+					<div class="item">
+						<p>Hoàng Quỳnh Nga</p>
+						<p>500.000 VND</p>
+					</div>
+					<div class="item">
+						<p>Hoàng Quỳnh Nga</p>
+						<p>500.000 VND</p>
+					</div>
+					<div class="item">
+						<p>Hoàng Quỳnh Nga</p>
+						<p>500.000 VND</p>
+					</div>
+					<div class="item">
+						<p>Hoàng Quỳnh Nga</p>
+						<p>500.000 VND</p>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
 	<div class="copyright">© 2019 Alpha King. All Right Reserved</div>
 </main>
 <div class="wheel-of-fortune">
 	<div class="popup">
-        <div id="gameDiv"></div>
-		<div class="button-action" id="button-action" onclick="start()">Quay may mắn</div>
+		<div id="gameDiv"></div>
+		<div class="button-action" id="button-action" onclick="start()">Đóng góp</div>
 	</div>
-	<div class="popup-confirm" >
+	<div class="popup-confirm"  style="display: none;">
 		<div class="content">
-			<div class="left">
-				<div class="img"><img src="<?php echo IMAGE_URL.'/landing-page/test.png'; ?>" alt="alphaking"></div>
+			<div class="img"><img src="<?php echo IMAGE_URL.'/landing-page/confirm.png'; ?>"></div>
+			<div class="_fm">
 				<div class="title">Hoạt động tháng 6<br/> nụ cười bé thơ</div>
-			</div>
-			<div class="right">
 				<div class="tag">#ShareWithHeart</div>
-				<div class="thankyou">Cảm ơn Quý Khách Hàng đã đồng hành cùng Alpha King trao tặng yêu thương & tạo nên những nghĩa cử lớn lao.</div>
-				<div class="name">Nguyễn Bảo Ngọc</div>
-				<div class="prize">10 Triệu</div>
+				<div class="thankyou">Cảm ơn Quý Khách Hàng đã đồng hành<br/> cùng Alpha King trao tặng yêu thương<br/> & tạo nên những nghĩa cử lớn lao.</div>
+
+				<div class="name">
+					<p>Cám ơn khách hàng</p>
+					<p>Nguyễn Bảo Ngọc</p>
+				</div>
+				<div class="prize">8 lọ (4 triệu)</div>
 			</div>
 		</div>
 		<div class="button">
@@ -92,10 +159,6 @@
 		var width_content = $('body').width();
 		$('.decor-name, .decor-content').css('border-left-width' , width_content);
 		$('.decor-bottom').css('border-right-width' , (width_content*70)/100);
-
-		var nav_slide = -($('#slider-nav-banner').height() - 118)/2;
-		console.log(nav_slide);
-		$('#slider-nav-banner').css('top' , nav_slide);
 
 		//js slide banner:
 		$('#slider-for-banner').slick({
@@ -123,6 +186,9 @@
 			$('.wheel-of-fortune, .overlay').fadeOut();
 		});
 
+		//js scrollbar:
+		$('#contribution-content').mCustomScrollbar();
+
 		//js quay giải thưởng
 		/*var wheel = document.querySelector("#grade_1"),
 		button = document.querySelector("#button-action"),
@@ -137,55 +203,55 @@
 		button.addEventListener("click", spin_wheel, false);*/
 
 
-        function validatePhonenumber(number) {
-            var re = /\(?([0-9]{3})\)?([ .-]?)([0-9]{3})\2([0-9]{4})/ ;
-            return re.test(String(number));
-        }
-        var formButton = $('#form_submit').find('button');
-        var phone_msg = $('body').find('#phone_msg');
+		function validatePhonenumber(number) {
+			var re = /\(?([0-9]{3})\)?([ .-]?)([0-9]{3})\2([0-9]{4})/ ;
+			return re.test(String(number));
+		}
+		var formButton = $('#form_submit').find('button');
+		var phone_msg = $('body').find('#phone_msg');
 
 
-        $('#contact_phone').change(function (event) {
-            var phone_text = $(this).val();
-            var count_number = phone_text.length;
+		$('#contact_phone').change(function (event) {
+			var phone_text = $(this).val();
+			var count_number = phone_text.length;
 
-            if ( !validatePhonenumber(phone_text) && phone_text || count_number > 11 ) {
-                phone_msg.text('Số điện thoại không hợp lệ !');
-                formButton.css("cursor", "not-allowed");
-                formButton.prop('disabled', true);
-            } else {
-                phone_msg.text('');
-                formButton.css("cursor", "pointer");
-                formButton.prop('disabled', false);
-            }
-        });
+			if ( !validatePhonenumber(phone_text) && phone_text || count_number > 11 ) {
+				phone_msg.text('Số điện thoại không hợp lệ !');
+				formButton.css("cursor", "not-allowed");
+				formButton.prop('disabled', true);
+			} else {
+				phone_msg.text('');
+				formButton.css("cursor", "pointer");
+				formButton.prop('disabled', false);
+			}
+		});
 
-        formButton.submit(function (event) {
-            event.preventDefault();
-            console.log('ok');
+		formButton.submit(function (event) {
+			event.preventDefault();
+			console.log('ok');
 
-            var form = $(this);
-            let contactNameValue = $('#contact_name').val();
+			var form = $(this);
+			let contactNameValue = $('#contact_name').val();
 
-            console.log(contactNameValue, 'step 1');
-            if ( !contactNameValue || contactNameValue === '' || contactNameValue === null ) {
-                phone_msg.text('Vui họ tên !');
-                formButton.css("cursor", "not-allowed");
-                formButton.prop('disabled', true);
-                return
-            }
-            console.log(contactNameValue, 'step 2');
-
-
+			console.log(contactNameValue, 'step 1');
+			if ( !contactNameValue || contactNameValue === '' || contactNameValue === null ) {
+				phone_msg.text('Vui họ tên !');
+				formButton.css("cursor", "not-allowed");
+				formButton.prop('disabled', true);
+				return
+			}
+			console.log(contactNameValue, 'step 2');
 
 
-        });
 
 
-    });
+		});
 
-    function start(e) {
-        canSpin = true;
+
+	});
+
+	function start(e) {
+		canSpin = true;
         //xử lý ajax gọi server để lấy lat, lng, value
 
         var ajaxurl = "<?php echo admin_url('admin-ajax.php'); ?>";
@@ -193,25 +259,25 @@
         console.log(ajaxurl, 'ajaxurl');
 
         jQuery.ajax({
-            url: ajaxurl,
-            type: 'post',
-            dataType: 'json',
-            data: {
-                nonce: "<?php echo wp_create_nonce('game_call_get_prize_nonce') ?>",
-                action: "game_call_get_prize_ajax"
-            },
-            beforeSend: function () {
-                console.log('Đang xử lý ...');
-            },
-            complete: function () {
-                console.log('Xử lý ok');
-            }
+        	url: ajaxurl,
+        	type: 'post',
+        	dataType: 'json',
+        	data: {
+        		nonce: "<?php echo wp_create_nonce('game_call_get_prize_nonce') ?>",
+        		action: "game_call_get_prize_ajax"
+        	},
+        	beforeSend: function () {
+        		console.log('Đang xử lý ...');
+        	},
+        	complete: function () {
+        		console.log('Xử lý ok');
+        	}
         })
 
 
-            .done(function(response) {
-                console.log(response);
-                if (response) {
+        .done(function(response) {
+        	console.log(response);
+        	if (response) {
                     // self.spin(response.lat, response.lng, response.value)
                     console.log(response.lat, response.lng, response.value, 'response.lat, response.lng, response.value');
                     that.spin(13, 32, 600);
@@ -219,9 +285,9 @@
                 }
                 return false;
             })
-            .fail(function() {
-                console.log('failed');
-            });
+        .fail(function() {
+        	console.log('failed');
+        });
 
 
         /*
