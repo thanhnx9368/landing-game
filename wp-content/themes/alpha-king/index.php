@@ -11,18 +11,16 @@
 	</div>
 	<div class="slide-banner">
 		<div class="slide-item" id="slider-for-banner">
-			<div class="slide" style="background-image: url(<?php echo IMAGE_URL.'/landing-page/banner.png'; ?>);"></div>
-			<div class="slide" style="background-image: url(<?php echo IMAGE_URL.'/landing-page/banner.png'; ?>);"></div>
-			<div class="slide" style="background-image: url(<?php echo IMAGE_URL.'/landing-page/banner.png'; ?>);"></div>
-			<div class="slide" style="background-image: url(<?php echo IMAGE_URL.'/landing-page/banner.png'; ?>);"></div>
-			<div class="slide" style="background-image: url(<?php echo IMAGE_URL.'/landing-page/banner.png'; ?>);"></div>
+			<div class="slide" style="background-image: url(<?php echo IMAGE_URL.'/landing-page/img-1.jpg'; ?>);"></div>
+			<div class="slide" style="background-image: url(<?php echo IMAGE_URL.'/landing-page/img-2.jpeg'; ?>);"></div>
+			<div class="slide" style="background-image: url(<?php echo IMAGE_URL.'/landing-page/img-3.jpg'; ?>);"></div>
+			<div class="slide" style="background-image: url(<?php echo IMAGE_URL.'/landing-page/img-4.jpg'; ?>);"></div>
 		</div>
 		<div class="slide-item" id="slider-nav-banner">
-			<div class="slide" style="background-image: url(<?php echo IMAGE_URL.'/landing-page/banner.png'; ?>);"></div>
-			<div class="slide" style="background-image: url(<?php echo IMAGE_URL.'/landing-page/banner.png'; ?>);"></div>
-			<div class="slide" style="background-image: url(<?php echo IMAGE_URL.'/landing-page/banner.png'; ?>);"></div>
-			<div class="slide" style="background-image: url(<?php echo IMAGE_URL.'/landing-page/banner.png'; ?>);"></div>
-			<div class="slide" style="background-image: url(<?php echo IMAGE_URL.'/landing-page/banner.png'; ?>);"></div>
+			<div class="slide" style="background-image: url(<?php echo IMAGE_URL.'/landing-page/img-1.jpg'; ?>);"></div>
+			<div class="slide" style="background-image: url(<?php echo IMAGE_URL.'/landing-page/img-2.jpeg'; ?>);"></div>
+			<div class="slide" style="background-image: url(<?php echo IMAGE_URL.'/landing-page/img-3.jpg'; ?>);"></div>
+			<div class="slide" style="background-image: url(<?php echo IMAGE_URL.'/landing-page/img-4.jpg'; ?>);"></div>
 		</div>
 	</div>
 	<div class="content">
@@ -36,7 +34,7 @@
 		<div class="desc">
 			<p>Vòng tay ấm chở che, nụ cười rạng rỡ và tương lai tươi sáng.</p>
 			<p>Với mong muốn mang tới nhiều yêu thương hơn để các trẻ em mồ côi hạnh phúc trọn vẹn trong ngày Lễ Thiếu nhi 1/6 sắp tới, Alpha King trân trọng giới thiệu tới các Bạn - những Khách Hàng trân quý chương trình thiện nguyện tháng 6: "Nụ cười bé thơ".</p>
-			<p>Thông tin chi tiết về <br/> Làng Trẻ Em SOS Việt Nam <br/><a href="#">https://sosvietnam.org/</a></p>
+			<p>Thông tin chi tiết về <br/> Làng Trẻ Em SOS Việt Nam <br/><a href="https://sosvietnam.org/" target="_blank">https://sosvietnam.org/</a></p>
 		</div>
 	</div>
 	<div class="form">
@@ -58,7 +56,7 @@
 			</div>
 		</form>
 	</div>
-	<div class="contribution-list"  style="display: none;">
+	<div class="contribution-list"  >
 		<div class="title">Danh sách đóng góp</div>
 		<div class="list" id="contribution-content">
 			<div class="fm">
@@ -126,11 +124,11 @@
 	<div class="copyright">© 2019 Alpha King. All Right Reserved</div>
 </main>
 <div class="wheel-of-fortune">
-	<div class="popup">
+    <div class="popup">
 		<div id="gameDiv"></div>
 		<div class="button-action" id="button-action" onclick="start()">Đóng góp</div>
 	</div>
-	<div class="popup-confirm"  style="display: none;">
+	<div class="popup-confirm" style="display: none">
 		<div class="content">
 			<div class="img"><img src="<?php echo IMAGE_URL.'/landing-page/confirm.png'; ?>"></div>
 			<div class="_fm">
@@ -146,7 +144,8 @@
 			</div>
 		</div>
 		<div class="button">
-			<div class="btn-confirm">Xác nhận</div>
+<!--			<div class="btn-confirm">Xác nhận</div>-->
+			<a href="<?php echo HOME_URL; ?>" class="btn-share">Xác nhận</a>
 			<a href="#" class="btn-share">Chia sẻ</a>
 		</div>
 	</div>
@@ -155,6 +154,8 @@
 
 <script>
 	jQuery(document).ready(function($) {
+
+
 		//js css decor:
 		var width_content = $('body').width();
 		$('.decor-name, .decor-content').css('border-left-width' , width_content);
@@ -228,22 +229,16 @@
 
 		formButton.submit(function (event) {
 			event.preventDefault();
-			console.log('ok');
 
 			var form = $(this);
 			let contactNameValue = $('#contact_name').val();
 
-			console.log(contactNameValue, 'step 1');
 			if ( !contactNameValue || contactNameValue === '' || contactNameValue === null ) {
 				phone_msg.text('Vui họ tên !');
 				formButton.css("cursor", "not-allowed");
 				formButton.prop('disabled', true);
 				return
 			}
-			console.log(contactNameValue, 'step 2');
-
-
-
 
 		});
 
@@ -255,8 +250,6 @@
         //xử lý ajax gọi server để lấy lat, lng, value
 
         var ajaxurl = "<?php echo admin_url('admin-ajax.php'); ?>";
-
-        console.log(ajaxurl, 'ajaxurl');
 
         jQuery.ajax({
         	url: ajaxurl,
@@ -276,13 +269,15 @@
 
 
         .done(function(response) {
-        	console.log(response);
         	if (response) {
-                    // self.spin(response.lat, response.lng, response.value)
-                    console.log(response.lat, response.lng, response.value, 'response.lat, response.lng, response.value');
-                    that.spin(response.lat, response.lng, response.value);
+                setTimeout(function ($) {
+                    jQuery('.wheel-of-fortune').find('.popup').hide();
+                    jQuery('.wheel-of-fortune').find('.popup-confirm').show();
+                }, 18000);
 
-                }
+                that.spin(response.lat, response.lng, response.value);
+                // self.spin(response.lat, response.lng, response.value)
+            }
                 return false;
             })
         .fail(function() {
