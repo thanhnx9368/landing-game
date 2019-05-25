@@ -3,7 +3,7 @@ var canSpin;
 var slices = 16;
 var slicePrizes = ["100.00", "200.000", "300.000", "400.000", "500.000", "600.000", "700.000", "800.000", "900.000", "1.000.000", "1.100.000", "1.200.000", "1.300.000", "1.400.000", "1.500.000", "1.600.000"];
 var prize;
-var timer = 20000;
+var timer = 15000;
 var inner;
 var prizeText;
 var that;
@@ -46,7 +46,7 @@ playGame.prototype = {
     spin(lat,lng,value) {
         if ( canSpin ) {
 
-            var rounds = game.rnd.between(1,16);
+            var rounds = game.rnd.between(15,16);
             //số vòng quay random trong khoảng từ 10 đến 16
             var degress = game.rnd.between(lat, lng);
             //và dừng lại ở điểm random nằm trong khoảng lat và lng
@@ -69,6 +69,6 @@ playGame.prototype = {
     },
     winPrize(value) {
         // Xử lý sau khi quay xong
-        // prizeText.text = value;
+        prizeText.text = value;
     }
 }

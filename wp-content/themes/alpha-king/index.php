@@ -11,17 +11,19 @@
 	</div>
 	<div class="slide-banner">
 		<div class="slide-item" id="slider-for-banner">
-			<div class="slide" style="background-image: url(<?php echo IMAGE_URL.'/landing-page/img-1.jpg'; ?>);"></div>
+			<div class="slide" style="background-image: url(<?php echo IMAGE_URL.'/landing-page/banner.png'; ?>);"></div>
 			<div class="slide" style="background-image: url(<?php echo IMAGE_URL.'/landing-page/img-2.jpeg'; ?>);"></div>
 			<div class="slide" style="background-image: url(<?php echo IMAGE_URL.'/landing-page/img-3.jpg'; ?>);"></div>
-			<div class="slide" style="background-image: url(<?php echo IMAGE_URL.'/landing-page/img-4.jpg'; ?>);"></div>
-		</div>
+            <div class="slide" style="background-image: url(<?php echo IMAGE_URL.'/landing-page/img-4.jpg'; ?>);"></div>
+            <div class="slide" style="background-image: url(<?php echo IMAGE_URL.'/landing-page/img-6.jpeg'; ?>);"></div>
+        </div>
 		<div class="slide-item" id="slider-nav-banner">
-			<div class="slide" style="background-image: url(<?php echo IMAGE_URL.'/landing-page/img-1.jpg'; ?>);"></div>
+			<div class="slide" style="background-image: url(<?php echo IMAGE_URL.'/landing-page/banner.png'; ?>);"></div>
 			<div class="slide" style="background-image: url(<?php echo IMAGE_URL.'/landing-page/img-2.jpeg'; ?>);"></div>
 			<div class="slide" style="background-image: url(<?php echo IMAGE_URL.'/landing-page/img-3.jpg'; ?>);"></div>
-			<div class="slide" style="background-image: url(<?php echo IMAGE_URL.'/landing-page/img-4.jpg'; ?>);"></div>
-		</div>
+            <div class="slide" style="background-image: url(<?php echo IMAGE_URL.'/landing-page/img-4.jpg'; ?>);"></div>
+            <div class="slide" style="background-image: url(<?php echo IMAGE_URL.'/landing-page/img-6.jpeg'; ?>);"></div>
+        </div>
 	</div>
 	<div class="content">
 		<div class="background" style="background-image: url(<?php echo IMAGE_URL.'/landing-page/screen-2.jpg'; ?>);"></div>
@@ -270,12 +272,13 @@
 
         .done(function(response) {
         	if (response) {
+        	    console.log(response.lat, response.lng, response.code, 'response.lat, response.lng, response.code');
                 setTimeout(function ($) {
                     jQuery('.wheel-of-fortune').find('.popup').hide();
                     jQuery('.wheel-of-fortune').find('.popup-confirm').show();
-                }, 18000);
+                }, 15000);
 
-                that.spin(response.lat, response.lng, response.value);
+                that.spin(response.lat, response.lng, response.code);
                 // self.spin(response.lat, response.lng, response.value)
             }
                 return false;

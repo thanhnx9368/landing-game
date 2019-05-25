@@ -226,7 +226,27 @@ function game_call_get_prize_ajax()
         exit;
     }
 
-    echo json_encode( array('success' => true, 'lat' =>  105, 'lng' => 123, "value" => 700 ));
+    $game_price = tu_get_game_with_pagination(1, 1);
+    $game_detail = [];
+
+    if (isset($game_price) && $game_price) :
+
+        while ($game_price->have_posts()) : $game_price->the_post();
+            $post_id = get_the_ID();
+            $title = get_the_title($post_id);
+            $game_lat = get_post_meta($post_id, 'game_lat', true);
+            $game_lng = get_post_meta($post_id, 'game_lng', true);
+            $game_prize_code = get_post_meta($post_id, 'game_prize_code', true);
+            $game_detail = [
+                    'lat' => $game_lat,
+                    'lng' => $game_lng,
+                    'code' => $game_prize_code
+            ];
+
+             endwhile; ?>
+    <?php endif;
+
+    echo json_encode( array('success' => true, 'lat' =>  $game_detail['lat'], 'lng' => $game_detail['lng'], "code" => $game_detail['code'] ));
     exit;
 
 
