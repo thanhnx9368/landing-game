@@ -1,5 +1,4 @@
 var game;
-
 var canSpin;
 var slices = 16;
 var slicePrizes = ["100.00", "200.000", "300.000", "400.000", "500.000", "600.000", "700.000", "800.000", "900.000", "1.000.000", "1.100.000", "1.200.000", "1.300.000", "1.400.000", "1.500.000", "1.600.000"];
@@ -10,7 +9,6 @@ var prizeText;
 var that;
 
 window.onload = function() {
-
     game = new Phaser.Game(500, 500, Phaser.CANVAS, 'gameDiv');
 
     game.state.add("PlayGame", playGame);
@@ -66,60 +64,6 @@ playGame.prototype = {
     },
     winPrize(value) {
         // Xử lý sau khi quay xong
-        prizeText.text = value;
+        // prizeText.text = value;
     }
-}
-
-function start(e) {
-    canSpin = true;
-    //xử lý ajax gọi server để lấy lat, lng, value
-    /*$.ajax({
-        url: "",
-        type: 'post',
-        dataType: 'json',
-        data: {
-            nonce: "",
-            action: "load_more_item_ajax"
-        },
-        beforeSend: function () {
-            console.log('Đang xử lý ...');
-        },
-        complete: function () {
-            console.log('Xử lý ok');
-        }
-    })
-
-
-    .done(function(response) {
-        console.log(response);
-        if (response) {
-            self.spin(response.lat, response.lng, response.value)
-            console.log('success');
-        }
-        return false;
-    })
-    .fail(function() {
-        console.log('failed');
-    });*/
-
-    that.spin(13, 32, 600);
-    /*
-    * -11 - 11: 2 lọ
-    * 13 - 32: 10 lọ
-    * 35 - 55: 1 lọ
-    * 57 - 78: 5 lọ
-    * 79 - 101 2 lọ
-    * 102 - 123 8 lọ
-    * 124 - 146 2 lọ
-    * 147 - 168 5 lọ
-    * 173 - 191 1 lọ
-    * 193 - 212 2 lọ
-    * 214 - 234 1 lọ
-    * 238 - 258 5 lọ
-    * 260 - 279 1 lọ
-    * 281 - 301 2 lọ
-    * 304 - 323 1 lọ
-    * 325 - 345 1 lọ
-    * */
-
 }

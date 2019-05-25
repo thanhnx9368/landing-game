@@ -65,7 +65,7 @@
         <div id="gameDiv"></div>
 		<div class="button-action" id="button-action" onclick="start()">Quay may mắn</div>
 	</div>
-	<div class="popup-confirm" style="display: none;">
+	<div class="popup-confirm" >
 		<div class="content">
 			<div class="left">
 				<div class="img"><img src="<?php echo IMAGE_URL.'/landing-page/test.png'; ?>" alt="alphaking"></div>
@@ -183,5 +183,66 @@
 
 
     });
+
+    function start(e) {
+        canSpin = true;
+        //xử lý ajax gọi server để lấy lat, lng, value
+
+        var ajaxurl = "<?php echo admin_url('admin-ajax.php'); ?>";
+
+        console.log(ajaxurl, 'ajaxurl');
+
+        jQuery.ajax({
+            url: ajaxurl,
+            type: 'post',
+            dataType: 'json',
+            data: {
+                nonce: "<?php echo wp_create_nonce('game_call_get_prize_nonce') ?>",
+                action: "game_call_get_prize_ajax"
+            },
+            beforeSend: function () {
+                console.log('Đang xử lý ...');
+            },
+            complete: function () {
+                console.log('Xử lý ok');
+            }
+        })
+
+
+            .done(function(response) {
+                console.log(response);
+                if (response) {
+                    // self.spin(response.lat, response.lng, response.value)
+                    console.log(response.lat, response.lng, response.value, 'response.lat, response.lng, response.value');
+                    that.spin(13, 32, 600);
+
+                }
+                return false;
+            })
+            .fail(function() {
+                console.log('failed');
+            });
+
+
+        /*
+        * -11 - 11: 2 lọ
+        * 13 - 32: 10 lọ
+        * 35 - 55: 1 lọ
+        * 57 - 78: 5 lọ
+        * 79 - 101 2 lọ
+        * 102 - 123 8 lọ
+        * 124 - 146 2 lọ
+        * 147 - 168 5 lọ
+        * 173 - 191 1 lọ
+        * 193 - 212 2 lọ
+        * 214 - 234 1 lọ
+        * 238 - 258 5 lọ
+        * 260 - 279 1 lọ
+        * 281 - 301 2 lọ
+        * 304 - 323 1 lọ
+        * 325 - 345 1 lọ
+        * */
+
+    }
 </script> 
 <?php get_footer(); ?>

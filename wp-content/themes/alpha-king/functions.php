@@ -27,4 +27,7 @@ include_once(TEMPLATE_PATH . '/includes/init.php');
  * Including post-types files
  * You can create more post-types if you need but you should use the structure of existed files
  */
+include_once(TEMPLATE_PATH . '/post-types/game.php');
 include_once(TEMPLATE_PATH . '/post-types/contact.php');
+
+
