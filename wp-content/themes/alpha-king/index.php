@@ -214,7 +214,7 @@
                 if (response) {
                     // self.spin(response.lat, response.lng, response.value)
                     console.log(response.lat, response.lng, response.value, 'response.lat, response.lng, response.value');
-                    that.spin(13, 32, 600);
+                    that.spin(response.lat, response.lng, response.value);
 
                 }
                 return false;
@@ -230,7 +230,7 @@
         * 35 - 55: 1 lọ
         * 57 - 78: 5 lọ
         * 79 - 101 2 lọ
-        * 102 - 123 8 lọ
+        * 105 - 123 8 lọ
         * 124 - 146 2 lọ
         * 147 - 168 5 lọ
         * 173 - 191 1 lọ

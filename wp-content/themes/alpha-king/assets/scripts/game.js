@@ -13,6 +13,8 @@ window.onload = function() {
 
     game.state.add("PlayGame", playGame);
     game.state.start("PlayGame");
+    game.camera.setBackgroundColor('#f00');
+
 }
 
 //Play State
@@ -32,6 +34,8 @@ playGame.prototype = {
         inner.anchor.set(0.5);
         var outer = game.add.sprite(game.width/2, game.height/2, "outer");
         outer.anchor.set(0.5);
+
+
 
         //hiển thị quà tặng
         prizeText = game.add.text(game.world.centerX, 400, "");
@@ -64,6 +68,6 @@ playGame.prototype = {
     },
     winPrize(value) {
         // Xử lý sau khi quay xong
-        // prizeText.text = value;
+        prizeText.text = value;
     }
 }
