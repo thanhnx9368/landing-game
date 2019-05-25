@@ -250,7 +250,6 @@
 
 	function start(e) {
 		canSpin = true;
-		var objectSuccess = {};
         //xử lý ajax gọi server để lấy lat, lng, value
 
         var ajaxurl = "<?php echo admin_url('admin-ajax.php'); ?>";
@@ -274,12 +273,14 @@
 
         .done(function(response) {
         	if (response) {
-        	    objectSuccess = response;
                 console.log(response.lat, response.lng, response.code, 'response.lat, response.lng, response.code');
-                setTimeout(function ($) {
+                // that.spin(parseInt(response.lat), parseInt(response.lng), parseInt(response.code));
+                that.spin(234, 234, 10);
+
+                /*setTimeout(function ($) {
                     jQuery('.wheel-of-fortune').find('.popup').hide();
                     jQuery('.wheel-of-fortune').find('.popup-confirm').show();
-                }, 15000);
+                }, 1000);*/
 
                 // self.spin(response.lat, response.lng, response.value)
             }
@@ -290,22 +291,21 @@
         });
 
 
-        that.spin(13, 32, 600);
 
 
 
         /*
         * -11 - 11: 2 lọ
-        * 13 - 32: 10 lọ
-        * 35 - 55: 1 lọ
-        * 57 - 78: 5 lọ
-        * 79 - 101 2 lọ
+        * 14 - 30: 10 lọ
+        * 35 - 53: 1 lọ
+        * 58 - 76: 5 lọ
+        * 81 - 99 2 lọ
         * 105 - 123 8 lọ
-        * 124 - 146 2 lọ
-        * 147 - 168 5 lọ
-        * 173 - 191 1 lọ
-        * 193 - 212 2 lọ
-        * 214 - 234 1 lọ
+        * 126 - 145 2 lọ
+        * 150 - 167 5 lọ
+        * 172 - 189 1 lọ
+        * 194 - 212 2 lọ
+        * 215 - 234 1 lọ
         * 238 - 258 5 lọ
         * 260 - 279 1 lọ
         * 281 - 301 2 lọ
