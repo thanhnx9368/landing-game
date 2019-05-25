@@ -228,12 +228,12 @@ function game_call_get_prize_ajax()
 
     $game_price = tu_get_game_with_pagination(1, 1);
     $game_detail = [];
+    $post_id_to_delete = '';
 
     if (isset($game_price) && $game_price) :
 
         while ($game_price->have_posts()) : $game_price->the_post();
             $post_id = get_the_ID();
-            $title = get_the_title($post_id);
             $game_lat = get_post_meta($post_id, 'game_lat', true);
             $game_lng = get_post_meta($post_id, 'game_lng', true);
             $game_prize_code = get_post_meta($post_id, 'game_prize_code', true);
@@ -242,9 +242,11 @@ function game_call_get_prize_ajax()
                     'lng' => $game_lng,
                     'code' => $game_prize_code
             ];
+            $post_id_to_delete = $post_id;
 
              endwhile; ?>
     <?php endif;
+//    wp_delete_post($post_id_to_delete, false);
 
     echo json_encode( array('success' => true, 'lat' =>  $game_detail['lat'], 'lng' => $game_detail['lng'], "code" => $game_detail['code'] ));
     exit;

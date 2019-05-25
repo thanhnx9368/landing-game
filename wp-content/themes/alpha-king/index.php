@@ -253,6 +253,7 @@
 
 	function start(e) {
 		canSpin = true;
+		var objectSuccess = {};
         //xử lý ajax gọi server để lấy lat, lng, value
 
         var ajaxurl = "<?php echo admin_url('admin-ajax.php'); ?>";
@@ -276,13 +277,13 @@
 
         .done(function(response) {
         	if (response) {
-        	    console.log(response.lat, response.lng, response.code, 'response.lat, response.lng, response.code');
+        	    objectSuccess = response;
+                console.log(response.lat, response.lng, response.code, 'response.lat, response.lng, response.code');
                 setTimeout(function ($) {
                     jQuery('.wheel-of-fortune').find('.popup').hide();
                     jQuery('.wheel-of-fortune').find('.popup-confirm').show();
                 }, 15000);
 
-                that.spin(response.lat, response.lng, response.code);
                 // self.spin(response.lat, response.lng, response.value)
             }
                 return false;
@@ -290,6 +291,10 @@
         .fail(function() {
         	console.log('failed');
         });
+
+
+        that.spin(13, 32, 600);
+
 
 
         /*
