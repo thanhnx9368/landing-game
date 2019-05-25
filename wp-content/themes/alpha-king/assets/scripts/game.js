@@ -3,7 +3,7 @@ var canSpin;
 var slices = 16;
 var slicePrizes = ["100.00", "200.000", "300.000", "400.000", "500.000", "600.000", "700.000", "800.000", "900.000", "1.000.000", "1.100.000", "1.200.000", "1.300.000", "1.400.000", "1.500.000", "1.600.000"];
 var prize;
-var timer = 5500;
+var timer = 20000;
 var inner;
 var prizeText;
 var that;
@@ -13,6 +13,7 @@ window.onload = function() {
 
     game.state.add("PlayGame", playGame);
     game.state.start("PlayGame");
+
 }
 
 //Play State
@@ -32,6 +33,10 @@ playGame.prototype = {
         inner.anchor.set(0.5);
         var outer = game.add.sprite(game.width/2, game.height/2, "outer");
         outer.anchor.set(0.5);
+
+        this.game.stage.backgroundColor = '#141414';
+
+
 
         //hiển thị quà tặng
         prizeText = game.add.text(game.world.centerX, 400, "");

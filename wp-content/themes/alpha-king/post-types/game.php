@@ -226,7 +226,7 @@ function game_call_get_prize_ajax()
         exit;
     }
 
-    echo json_encode( array('success' => true, 'lat' =>  '100', 'lng' => "200", "value" => "600" ));
+    echo json_encode( array('success' => true, 'lat' =>  105, 'lng' => 123, "value" => 700 ));
     exit;
 
 
