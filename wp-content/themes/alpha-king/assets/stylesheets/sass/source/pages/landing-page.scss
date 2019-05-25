@@ -118,10 +118,16 @@ canvas {
 				position: relative;
 				top: -40px;
 				margin: 0 auto;
-				width: percentage(352/1366);
+				// width: percentage(352/1366);
 				@include mediaMaxWidth(768px){
 					width: 100%;
 					padding: 0px 15px;
+				}
+				@include mediaMaxWidth(375px){
+					top: -37.5px;
+				}
+				@include mediaMaxWidth(320px){
+					top: -32.5px;
 				}
 				.slick-list{
 					margin: 0 -5px;
@@ -129,14 +135,28 @@ canvas {
 					@include mediaMaxWidth(768px){
 						padding-bottom: 15px;
 					}
+					.slick-track{
+						display: flex;
+						align-items: center;
+						justify-content: center;
+					}
 					.slick-slide{
 						margin: 0 5px;
-						padding-top: 22.223%;
+						padding-top: 0;
 						height: auto;
 						border-radius: 3px;
 						overflow: hidden;
-				pointer-events: initial;
-						
+						pointer-events: initial;
+						width: 83px !important;
+						height: 83px;
+						@include mediaMaxWidth(375px){
+							width: 75px !important;
+							height: 75px;
+						}
+						@include mediaMaxWidth(320px){
+							width: 65px !important;
+							height: 65px;
+						}
 						&:after{
 							display: none;
 						}
