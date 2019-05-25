@@ -600,11 +600,11 @@ canvas {
 				font-size: 10px;
 				text-align: center;
 				color: #2c2a2a;
-				padding: 10px 0px;
+				padding: 10px 0px 0px 0px;
 				line-height: 17px;
 			}
 			.name{
-				
+				padding-top: 10px;
 				text-align: center;
 				color: #2c2a2a;
 				p{
@@ -614,7 +614,7 @@ canvas {
 					margin-bottom: 0px;
 					&:nth-of-type(1){
 						font-family: "MONTSERRAT-MEDIUM";
-						font-size: 10px;
+						font-size: 12px;
 						text-transform: initial;
 						margin-bottom: 3px;
 					}

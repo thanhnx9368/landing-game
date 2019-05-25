@@ -90,6 +90,126 @@ function tu_get_contact_with_pagination($page = 1, $post_per_page = 10, $custom_
     return $posts;
 }
 
+
+function is_player_exist($phone) {
+    $args = array(
+        'post_type' => 'contact',
+        'paged' => 1,
+        'posts_per_page' => -1,
+        'meta_query' => array(
+            'relation' => 'OR',
+            array(
+                'key'     => 'contact_phone',
+                'value'   => $phone,
+                'compare' => '=',
+            ),
+        ),
+    );
+
+    $posts = new WP_Query($args);
+
+    if ( $posts->have_posts() ) return true;
+    return false;
+}
+
+
+/**
+ * AJAX HANDLE
+ */
+
+/*Insert subscriber user form*/
+add_action( 'wp_ajax_check_is_exist_phone_number_ajax', 'check_is_exist_phone_number_ajax' );
+add_action( 'wp_ajax_nopriv_check_is_exist_phone_number_ajax', 'check_is_exist_phone_number_ajax' );
+
+function check_is_exist_phone_number_ajax() {
+
+    if (!isset( $_POST['nonce'] ) || !wp_verify_nonce( $_POST['nonce'], 'check_is_exist_phone_number_nonce') )
+    {
+        echo json_encode( array('success' => false, 'msg' => 'Phiên làm việc đã hết, vui lòng tải lại trang và thử lại.') );
+        exit;
+    }
+    $request = array();
+    $request['player_phone'] = isset( $_POST['player_phone'] ) ? $_POST['player_phone'] : '';
+
+    if ( is_player_exist($request['player_phone']) ) {
+        echo json_encode(array('success' => false, 'msg' =>  'Liên hệ này đã đăng ký. Vui lòng thử lại!'));
+        exit;
+    }
+
+    echo json_encode( array('success' => true, 'msg' => 'Done') );
+    exit;
+
+}
+
+
+
+/**
+ * AJAX HANDLE
+ */
+
+/*Insert subscriber user form*/
+add_action( 'wp_ajax_call_post_info_player_ajax', 'call_post_info_player_ajax' );
+add_action( 'wp_ajax_nopriv_call_post_info_player_ajax', 'call_post_info_player_ajax' );
+
+function call_post_info_player_ajax() {
+
+    if (!isset( $_POST['nonce'] ) || !wp_verify_nonce( $_POST['nonce'], 'call_post_info_player_nonce') )
+    {
+        echo json_encode( array('success' => false, 'msg' => 'Phiên làm việc đã hết, vui lòng tải lại trang và thử lại.') );
+        exit;
+    }
+    $request = array();
+    $request['contact_name'] = isset( $_POST['contact_name'] ) ? $_POST['contact_name'] : '';
+    $request['contact_phone'] = isset( $_POST['contact_phone'] ) ? $_POST['contact_phone'] : '';
+    $request['game_prize'] = isset( $_POST['game_prize'] ) ? $_POST['game_prize'] : '';
+
+    /*insert post*/
+    $post_data = array(
+        'post_title' => $request['contact_name'] . ' - ' . $request['contact_phone'] . ' - ' . $request['game_prize'],
+        'post_content' => '',
+        'post_status' => 'pending',
+        'post_type' => 'contact'
+    );
+
+    $player_new_post = wp_insert_post($post_data);
+
+    if( !is_wp_error( $player_new_post ) ) {
+        update_post_meta( $player_new_post, 'contact_name', $request['contact_name'] );
+        update_post_meta( $player_new_post, 'contact_phone', $request['contact_phone'] );
+        update_post_meta( $player_new_post, 'contact_prize', $request['contact_prize'] );
+
+
+
+        $subject = 'Alpha King\'s Charity: Thông báo có từ thiện mới';
+
+        $content = "<p style='font-size:16px'> Chúc mừng bạn đã đăng ký thành công khóa học tại Dạy Học Tích Cực: </p> <br/>";
+
+        $content .= "<p style='font-size:14px'><b>Thông tin mã kích hoạt</b></p>";
+
+        $content .= $html;
+
+        $content .= "<p style='font-size:14px'>Bạn vui lòng truy cập vào <a href='http://dayhoctichcuc.edu.vn/'>Website</a> tiến hành kích hoạt khóa học</p>";
+
+        $content .= "<p style='font-size:14px'>Lưu ý: Mỗi khoá học chỉ cần kích hoạt 1 lần duy nhất</p>";
+
+        $content .= "<i style='font-size:14px'>Trân trọng!</i><br/>";
+
+        $send_mail = wp_mail('rainlove9876@gmail.com', $subject, $content);
+
+        setcookie('userSave', 'success', time() + (1 * 365 * 24 * 60 * 60 ), '/');
+
+        echo json_encode( array('success' => true, 'msg' => 'Done') );
+        exit;
+    }
+    else {
+        echo json_encode( array('success' => false, 'msg' => 'Có lỗi trong quá trình gửi thông tin. Vui lòng thử lại!') );
+        exit;
+    }
+
+}
+
+
+
 /**
  * POST META BOXES ----------- ----------- -----------
  */
@@ -99,10 +219,9 @@ function tu_add_meta_box_contact() {
     /** Meta box for general information */
     function tu_display_meta_box_contact_general($post) {
         $post_id = $post->ID;
-        $contact_email = get_post_meta($post_id, 'contact_email', true);
+        $contact_prize = get_post_meta($post_id, 'contact_prize', true);
         $contact_name = get_post_meta($post_id, 'contact_name', true);
         $contact_phone = get_post_meta($post_id, 'contact_phone', true);
-        $contact_content = $post->post_content;
         ?>
         <table class="form-table">
             <input type="hidden" name="nonce" value="<?php echo wp_create_nonce('save_metabox_contact'); ?>">
@@ -112,17 +231,14 @@ function tu_add_meta_box_contact() {
                 <td><?php echo $contact_name; ?></td>
             </tr>
             <tr>
-                <th scope="row"><label><?php _e('Email', TEXT_DOMAIN); ?></label></th>
-                <td><?php echo $contact_email; ?></td>
-            </tr>
-            <tr>
                 <th scope="row"><label><?php _e('SĐT', TEXT_DOMAIN); ?></label></th>
                 <td><?php echo $contact_phone; ?></td>
             </tr>
             <tr>
-                <th scope="row"><label><?php _e('Nội dung', TEXT_DOMAIN); ?></label></th>
-                <td><?php echo $contact_content; ?></td>
+                <th scope="row"><label><?php _e('Email', TEXT_DOMAIN); ?></label></th>
+                <td><?php echo $contact_prize; ?></td>
             </tr>
+
             </tbody>
         </table>
     <?php

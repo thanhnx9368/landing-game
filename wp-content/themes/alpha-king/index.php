@@ -39,19 +39,21 @@
 			<p>Thông tin chi tiết về <br/> Làng Trẻ Em SOS Việt Nam <br/><a href="https://sosvietnam.org/" target="_blank">https://sosvietnam.org/</a></p>
 		</div>
 	</div>
-	<div class="form">
+    <?php if ( !isset($_COOKIE['userSave']) || $_COOKIE['userSave'] != 'success' ) : ?>
+    <div class="form">
 		<div class="decor-form"></div>
 		<form method="post" action="" class="form-contact">
 			<div class="form-field-all">
 				<div class="form-group">
 					<label for="contact_name">Họ & tên <span>(*thông tin bắt buộc*)</span></label>
 					<input type="text" class="form-control" id="contact_name" name="contact_name" value="">
-				</div>
+                    <div class="form-group-msg" id="name_msg" style="color: #f00; padding-top: 5px"></div>
+                </div>
 				<div class="form-group">
 					<label for="contact_phone">Điện thoại</label>
 					<input type="tel" class="form-control" id="contact_phone" name="contact_phone" value="">
-					<div class="form-group-msg" id="phone_msg"></div>
-					<p>*Chỉ dành cho khách hàng có đặt chỗ booking*</p>
+                    <div class="form-group-msg" id="phone_msg" style="color: #f00; padding-top: 5px"></div>
+                    <p>*Chỉ dành cho khách hàng có đặt chỗ booking*</p>
 				</div>
 				<div class="form-group">
 					<button type="button" id="form_submit" class="btn-submit">Gửi đi</button>
@@ -59,7 +61,8 @@
 			</div>
 		</form>
 	</div>
-	<div class="contribution-list"  >
+    <?php endif; ?>
+	<!--<div class="contribution-list"  >
 		<div class="title">Danh sách đóng góp</div>
 		<div class="list">
 			<div class="fm">
@@ -123,7 +126,7 @@
 				</div>
 			</div>
 		</div>
-	</div>
+	</div>-->
 	<div class="copyright">© 2019 Alpha King. All Right Reserved</div>
 </main>
 <div class="wheel-of-fortune">
@@ -137,19 +140,19 @@
 			<div class="_fm">
 				<div class="title">Hoạt động tháng 6<br/> nụ cười bé thơ</div>
 				<div class="tag">#ShareWithHeart</div>
-				<div class="thankyou">Cảm ơn Quý Khách Hàng đã đồng hành<br/> cùng Alpha King trao tặng yêu thương<br/> & tạo nên những nghĩa cử lớn lao.</div>
+                <div class="name">
+                    <p>Cám ơn khách hàng</p>
+                    <p id="player"></p>
+                </div>
+				<div class="thankyou">đã đồng hành cùng Alpha King<br/> trao tặng yêu thương & tạo nên những<br/> nghĩa cử lớn lao.</div>
 
-				<div class="name">
-					<p>Cám ơn khách hàng</p>
-					<p>Nguyễn Bảo Ngọc</p>
-				</div>
-				<div class="prize">8 lọ (4 triệu)</div>
+				<div class="prize" id="prize_text"></div>
 			</div>
 		</div>
 		<div class="button">
 <!--			<div class="btn-confirm">Xác nhận</div>-->
 			<a href="<?php echo HOME_URL; ?>" class="btn-share">Xác nhận</a>
-			<a href="#" class="btn-share">Chia sẻ</a>
+			<a href="https://www.facebook.com/sharer/sharer.php?u=<?php echo HOME_URL; ?>" class="btn-share">Chia sẻ</a>
 		</div>
 	</div>
 </div>
@@ -165,7 +168,6 @@
 		$('.decor-bottom').css('border-right-width' , (width_content*70)/100);
 
 		var nav_slide = ($('#slider-nav-banner .slide:nth-of-type(1)').width() - 30) / 4;
-		console.log(nav_slide);
 		 $('#slider-nav-banner .slide').css('height' , nav_slide);
 
 		//js slide banner:
@@ -186,13 +188,13 @@
 		});
 
 		//js hiển thị popup:
-		$('button').click(function(event){
+		/*$('button').click(function(event){
 			$('.wheel-of-fortune, .overlay').fadeIn();
-		});
+		});*/
 
-		$('.overlay').click(function(event){
+	/*	$('.overlay').click(function(event){
 			$('.wheel-of-fortune, .overlay').fadeOut();
-		});
+		});*/
 
 		//js scrollbar:
 		$('#contribution-content').mCustomScrollbar();
@@ -212,110 +214,180 @@
 
 
 		function validatePhonenumber(number) {
-			var re = /\(?([0-9]{3})\)?([ .-]?)([0-9]{3})\2([0-9]{4})/ ;
+			var re = /^0[0-9]{3}[0-9]{3}[0-9]{3}$/ ;
 			return re.test(String(number));
 		}
-		var formButton = $('#form_submit').find('button');
+		var formButton = $('#form_submit');
+		var name_msg = $('body').find('#name_msg');
 		var phone_msg = $('body').find('#phone_msg');
 
+        var check_boolean_phone = true;
 
-		$('#contact_phone').change(function (event) {
+        $('#contact_phone').change(function (event) {
 			var phone_text = $(this).val();
 			var count_number = phone_text.length;
 
 			if ( !validatePhonenumber(phone_text) && phone_text || count_number > 11 ) {
-				phone_msg.text('Số điện thoại không hợp lệ !');
+				phone_msg.text('Số điện thoại không hợp lệ!');
 				formButton.css("cursor", "not-allowed");
 				formButton.prop('disabled', true);
-			} else {
+                check_boolean_phone = false;
+            } else {
 				phone_msg.text('');
 				formButton.css("cursor", "pointer");
 				formButton.prop('disabled', false);
-			}
+                check_boolean_phone = true;
+            }
 		});
 
-		formButton.submit(function (event) {
+		$('#contact_name').keyup(function (event) {
+            name_msg.text('');
+            formButton.css("cursor", "pointer");
+            formButton.prop('disabled', false);
+		});
+
+		$('#contact_phone').keyup(function (event) {
+            phone_msg.text('');
+            formButton.css("cursor", "pointer");
+            formButton.prop('disabled', false);
+		});
+
+        $('#form_submit').click(function (event) {
 			event.preventDefault();
 
 			var form = $(this);
 			let contactNameValue = $('#contact_name').val();
+			let contactPhoneValue = $('#contact_phone').val();
+
 
 			if ( !contactNameValue || contactNameValue === '' || contactNameValue === null ) {
-				phone_msg.text('Vui họ tên !');
+                name_msg.text('Vui lòng điền họ tên! ');
 				formButton.css("cursor", "not-allowed");
 				formButton.prop('disabled', true);
-				return
 			}
+            if ( contactNameValue && !contactPhoneValue  ) {
+                $('.wheel-of-fortune, .overlay').fadeIn();
+            }
+
+			if ( contactNameValue && contactPhoneValue && check_boolean_phone ) {
+			    jQuery.ajax({
+                   url: "<?php echo admin_url('admin-ajax.php'); ?>",
+                    type: 'post',
+                    dataType: 'json',
+                    data: {
+                        nonce: "<?php echo wp_create_nonce('check_is_exist_phone_number_nonce') ?>",
+                        action: "check_is_exist_phone_number_ajax",
+                        player_phone: contactPhoneValue ? contactPhoneValue : ''
+                    },
+                    success: function (response) {
+                        console.log(response, 'response');
+                        if ( response.success === true ) {
+                            $('.wheel-of-fortune, .overlay').fadeIn();
+                       } else {
+                            phone_msg.text('Liên hệ này đã đăng ký. Vui lòng thử lại!');
+                            formButton.css("cursor", "not-allowed");
+                            formButton.prop('disabled', true);
+                            check_boolean_phone = false;
+                        }
+                    },
+                    error: function () {
+                        console.log('Error to check phone number exist');
+                    }
+
+                });
+            }
+
 
 		});
 
 
 	});
 
-	function start(e) {
+
+    function start(e) {
 		canSpin = true;
         //xử lý ajax gọi server để lấy lat, lng, value
 
         var ajaxurl = "<?php echo admin_url('admin-ajax.php'); ?>";
+        var contactNameValue = document.getElementById("contact_name").value;
+        var contactPhoneValue = document.getElementById("contact_phone").value;
 
-        jQuery.ajax({
+
+        var lan1 =  jQuery.ajax({
         	url: ajaxurl,
         	type: 'post',
         	dataType: 'json',
         	data: {
         		nonce: "<?php echo wp_create_nonce('game_call_get_prize_nonce') ?>",
-        		action: "game_call_get_prize_ajax"
+        		action: "game_call_get_prize_ajax",
+                player_phone: contactPhoneValue ? contactPhoneValue : ''
         	},
-        	beforeSend: function () {
-        		console.log('Đang xử lý ...');
-        	},
-        	complete: function () {
-        		console.log('Xử lý ok');
-        	}
+            success: function(response) {
+                if (response) {
+                    let code = parseInt(response.code);
+                    let lat = '';
+                    let lng = '';
+                    let textPrize = '';
+
+                    if ( code === 10 ) {
+                        lat = 14;
+                        lng = 30;
+                        textPrize = '10 lọ (5 triệu)';
+                    } else if ( code === 2 ) {
+                        lat = 126;
+                        lng = 145;
+                        textPrize = '2 lọ (1 triệu)';
+                    } else if ( code === 5 ) {
+                        lat = 58;
+                        lng = 76;
+                        textPrize = '5 lọ (2.5 triệu)';
+                    } else if ( code === 8 ) {
+                        lat = 105;
+                        lng = 123;
+                        textPrize = '8 lọ (4 triệu)';
+                    } else {
+                        lat = 172;
+                        lng = 189;
+                        textPrize = '1 lọ (500 nghìn)';
+                    }
+                    document.getElementById("prize_text").innerHTML = textPrize;
+                    document.getElementById("player").innerHTML = contactNameValue;
+
+                    jQuery.ajax({
+                        url: ajaxurl,
+                        type: 'post',
+                        dataType: 'json',
+                        data: {
+                            nonce: "<?php echo wp_create_nonce('call_post_info_player_nonce') ?>",
+                            action: "call_post_info_player_ajax",
+                            contact_name: contactNameValue,
+                            contact_phone: contactPhoneValue,
+                            game_prize: textPrize
+                        },
+                        success: function (dataRecieve) {
+                            console.log('gửi thành công', dataRecieve)
+                        },
+                        error: function () {
+                            console.log('gửi ko thành công')
+                        }
+                    });
+
+                    setTimeout(function(){
+                        jQuery('.wheel-of-fortune').find('.popup').hide();
+                        jQuery('.wheel-of-fortune').find('.popup-confirm').show();
+                    }, 3000);
+
+                    that.spin(lat, lng, 10);
+
+                }
+                return false;
+            },
+          error: function() {
+              // When AJAX call has failed
+              console.log('AJAX call failed.');
+          },
         })
 
-
-        .done(function(response) {
-        	if (response) {
-                console.log(response.lat, response.lng, response.code, 'response.lat, response.lng, response.code');
-                // that.spin(parseInt(response.lat), parseInt(response.lng), parseInt(response.code));
-                that.spin(234, 234, 10);
-
-                /*setTimeout(function ($) {
-                    jQuery('.wheel-of-fortune').find('.popup').hide();
-                    jQuery('.wheel-of-fortune').find('.popup-confirm').show();
-                }, 1000);*/
-
-                // self.spin(response.lat, response.lng, response.value)
-            }
-                return false;
-            })
-        .fail(function() {
-        	console.log('failed');
-        });
-
-
-
-
-
-        /*
-        * -11 - 11: 2 lọ
-        * 14 - 30: 10 lọ
-        * 35 - 53: 1 lọ
-        * 58 - 76: 5 lọ
-        * 81 - 99 2 lọ
-        * 105 - 123 8 lọ
-        * 126 - 145 2 lọ
-        * 150 - 167 5 lọ
-        * 172 - 189 1 lọ
-        * 194 - 212 2 lọ
-        * 215 - 234 1 lọ
-        * 238 - 258 5 lọ
-        * 260 - 279 1 lọ
-        * 281 - 301 2 lọ
-        * 304 - 323 1 lọ
-        * 325 - 345 1 lọ
-        * */
 
     }
 </script> 

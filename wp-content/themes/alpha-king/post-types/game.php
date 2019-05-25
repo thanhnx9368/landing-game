@@ -225,6 +225,8 @@ function game_call_get_prize_ajax()
         echo json_encode( array('success' => false, 'msg' => 'Phiên làm việc đã hết, vui lòng tải lại trang và thử lại.') );
         exit;
     }
+    $request = array();
+    $request['player_phone'] = isset( $_POST['player_phone'] ) ? $_POST['player_phone'] : '';
 
     $game_price = tu_get_game_with_pagination(1, 1);
     $game_detail = [];
@@ -234,103 +236,22 @@ function game_call_get_prize_ajax()
 
         while ($game_price->have_posts()) : $game_price->the_post();
             $post_id = get_the_ID();
-            $game_lat = get_post_meta($post_id, 'game_lat', true);
-            $game_lng = get_post_meta($post_id, 'game_lng', true);
             $game_prize_code = get_post_meta($post_id, 'game_prize_code', true);
+
+            if ( !$request['player_phone'] && $request['player_phone'] === '' ) {
+                $game_prize_code = 1;
+            } else {
+                wp_trash_post($post_id);
+            }
+
             $game_detail = [
-                    'lat' => $game_lat,
-                    'lng' => $game_lng,
                     'code' => $game_prize_code
             ];
-            $post_id_to_delete = $post_id;
 
              endwhile; ?>
     <?php endif;
-//    wp_delete_post($post_id_to_delete, false);
 
-    echo json_encode( array('success' => true, 'lat' =>  $game_detail['lat'], 'lng' => $game_detail['lng'], "code" => $game_detail['code'] ));
+    echo json_encode( array('success' => true, "code" => $game_detail['code'] ));
     exit;
 
-
-/*    if( !is_wp_error( $new_post ) ) {
-
-
-
-        echo json_encode( array('success' => true, 'msg' =>  'Thông tin của bạn đã được lưu lại. Chúng tôi sẽ liên hệ với bạn trong thời gian sớm nhất. </br> Xin cảm ơn!' ));
-        exit;
-    } else {
-        echo json_encode(array('success' => false, 'msg' =>  'Có lỗi xảy ra trong quá trình tiếp nhận thông tin. Vui lòng thử lại!'));
-        exit;
-    }*/
-
-}
-
-
-
-/*register form article single*/
-add_action('wp_ajax_game_submit_ajax', 'game_submit_ajax');
-add_action('wp_ajax_nopriv_game_submit_ajax', 'game_submit_ajax');
-
-function game_submit_ajax()
-{
-    if (!isset( $_POST['nonce'] ) || !wp_verify_nonce( $_POST['nonce'], 'game_submit_ajax_nonce') )
-    {
-        echo json_encode( array('success' => false, 'msg' => 'Phiên làm việc đã hết, vui lòng tải lại trang và thử lại.') );
-        exit;
-    }
-
-    $request = array();
-    $required_fields = array('full_name');
-
-    /* get fields */
-    $request['full_name'] = isset( $_POST['full_name'] ) ? sanitize_text_field($_POST['full_name']) : null;
-    $request['phone'] = isset( $_POST['phone'] ) ? sanitize_text_field($_POST['phone']) : null;
-    /*    $request['captcha_generate'] = isset( $_POST['captcha_generate'] ) ? sanitize_text_field($_POST['captcha_generate']) : null;
-        $request['captcha_input'] = isset( $_POST['captcha_input'] ) ? sanitize_text_field($_POST['captcha_input']) : null;*/
-
-    /* validate */
-    foreach ( $required_fields as $field ) {
-        if ( !isset($request[$field]) || !$request[$field] ) {
-            echo json_encode( array('success' => false, 'msg' => 'Vui lòng điền đầy đủ thông tin.') );
-            exit;
-        }
-    }
-
-    if (preg_match('~[0-9]+~', $request['full_name'])) {
-        echo json_encode(array('success' => false, 'msg' =>  'Họ và tên liên hệ không được nhập số. Vui lòng thử lại!'));
-        exit;
-    }
-
-    if ((!preg_match('/^[0-9_\s]{10,20}+$/i', $request['phone'])) || ( strlen($request['phone']) > 11 ) ) {
-        echo json_encode(array('success' => false, 'msg' =>  'Số điện thoại không hợp lệ. Vui lòng thử lại!'));
-        exit;
-    }
-
-    if ( tu_is_game_register_exist($request['phone']) ) {
-        echo json_encode(array('success' => false, 'msg' =>  'Liên hệ này đã đăng ký. Vui lòng thử lại!'));
-        exit;
-    }
-
-    /*insert post*/
-    $post_id = array(
-        'post_title' => $request['full_name'] . ' - ' . $request['phone'] . ' - ' . $request['email'],
-        'post_content' => '',
-        'post_status' => 'pending',
-        'post_type' => 'game_register'
-    );
-
-    $new_post = wp_insert_post($post_id);
-
-    if( !is_wp_error( $new_post ) ) {
-
-
-        update_post_meta($new_post, 'game_register_full_name', $request['full_name']);
-        update_post_meta($new_post, 'game_register_phone', $request['phone']);
-
-        echo json_encode( array('success' => true, 'msg' =>  'Thông tin của bạn đã được lưu lại. Chúng tôi sẽ liên hệ với bạn trong thời gian sớm nhất. </br> Xin cảm ơn!' ));
-        exit;
-    } else {
-        echo json_encode(array('success' => false, 'msg' =>  'Có lỗi xảy ra trong quá trình tiếp nhận thông tin. Vui lòng thử lại!'));
-        exit;
-    }
 }
