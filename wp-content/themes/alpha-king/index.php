@@ -164,9 +164,6 @@
 
 		//js slide banner:
 		$('#slider-for-banner').slick({
-			swipeToSlide: false,
-      touchMove: false,
-      pauseOnHover: true,
 			slidesToShow: 1,
 			dots:false,
 			infinite: false,
