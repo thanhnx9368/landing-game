@@ -162,6 +162,10 @@
 		$('.decor-name, .decor-content').css('border-left-width' , width_content);
 		$('.decor-bottom').css('border-right-width' , (width_content*70)/100);
 
+		var nav_slide = ($('#slider-nav-banner .slide:nth-of-type(1)').width() - 30) / 4;
+		console.log(nav_slide);
+		 $('#slider-nav-banner .slide').css('height' , nav_slide);
+
 		//js slide banner:
 		$('#slider-for-banner').slick({
 			slidesToShow: 1,
