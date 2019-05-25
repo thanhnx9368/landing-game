@@ -130,20 +130,24 @@ canvas {
 					}
 					.slick-slide{
 						margin: 0 5px;
-						padding-top: 17.78%;
+						padding-top: 22.223%;
+						height: auto;
 						border-radius: 3px;
 						overflow: hidden;
+				pointer-events: initial;
+						
 						&:after{
 							display: none;
 						}
 						&:before{
+							background-image: initial;
 							border: 1px solid #ffffff;
 						}
 						&.slick-current{
 							box-shadow: 0px 5px 15px #0f0e0f;
-							@include mediaMaxWidth(768px){
-								border: 1px solid #d39957;
-							}
+							// @include mediaMaxWidth(768px){
+							// 	border: 1px solid #d39957;
+							// }
 							&:before{
 								border: 2px solid #d39957;
 							}
@@ -157,10 +161,15 @@ canvas {
 			}
 			.slide{
 				position: relative;
-				padding-top: 11.3514%;
+				height: calc(100vh - 60px);
 				@include backgroundCoverCenter;
 				background-repeat: no-repeat;
 				outline: none !important;
+				pointer-events: none;
+				@include mediaMaxWidth(768px){
+					padding-top: 22.5%;
+					height: auto;
+				}
 				&:before, &:after{
 					@include absoluteFull;
 					content: '';
@@ -170,10 +179,16 @@ canvas {
 				&:before{
 					background-position: center bottom;
 					background-image: url('../../../images/landing-page/banner-before.png');
+					@include mediaMaxWidth(768px){
+						background-image: initial;
+					}
 				}
 				&:after{
 					background-position: center top;
 					background-image: url('../../../images/landing-page/banner-after.png');
+					@include mediaMaxWidth(768px){
+						background-image: initial;
+					}
 				}
 			}
 		}
@@ -181,8 +196,10 @@ canvas {
 	.content{
 		position: relative;
 		padding: 160px 0px 140px;
+		min-height: 100vh;
 		@include mediaMaxWidth(768px){
 			padding: 100px 0px 60px;
+			min-height: initial;
 		}
 		&:before{
 			@include absoluteFull;
@@ -197,11 +214,7 @@ canvas {
 			left: 0;
 			right: 0;
 			bottom: 0;
-			top: 0;
-			background-image: url('../../../images/landing-page/pattern.png');
-			background-size: cover;
-			background-position: 100% top;
-			background-repeat: no-repeat;
+			top: 150px;
 		}
 		.background{
 			@include absoluteFull;
@@ -409,13 +422,22 @@ canvas {
 		.list{
 			margin: 45px auto 0px;
 			width: 100%;
-			max-height: 463px;
 			@include mediaMaxWidth(480px){
 				margin-top: 25px;
 			}
 			.fm{
-				border: 1px solid #3c3c3c;
-
+				position: relative;
+				&:before{
+					position: absolute;
+					right: 0;
+					top: 0;
+					bottom: 0;
+					height: 100%;
+					border: 1px solid #3c3c3c;
+					content: '';
+					left: 0;
+					width: calc(100% - 26px);
+				}
 			}
 			.head{
 				background: -moz-linear-gradient(left,  #a1703e 0%, #b27d47 3%, #ba844b 5%, #ba844b 30%, #d39958 41%, #d69c59 46%, #cf9654 51%, #c0894a 57%, #a77338 73%, #a06d33 79%, #a06d33 100%); 
@@ -426,6 +448,7 @@ canvas {
 				display: flex;
 				align-items: center;
 				height: 33px;
+				width: calc(100% - 26px);
 				@include mediaMaxWidth(480px){
 					padding: 0px 15px;
 				}
@@ -442,6 +465,7 @@ canvas {
 				}
 			}
 			.contribution-content{
+				max-height: 428px;
 				.item{
 					display: flex;
 					padding: 8px 50px;
@@ -665,6 +689,10 @@ canvas {
 	display: none;
 	cursor: pointer;
 }
+.mCSB_scrollTools{
+	width: 6px;
+	opacity: 1;
+}
 .mCSB_scrollTools .mCSB_draggerRail{
 	width: 4px;
 	background-color: #363636;
@@ -677,7 +705,5 @@ canvas {
 	background-color: #d69c59 !important;
 }
 .mCSB_inside > .mCSB_container{
-	@include mediaMaxWidth(480px){
-		margin-right: 20px;
-	}
+	margin-right: 26px;
 }

@@ -40,6 +40,7 @@
 		</div>
 	</div>
 	<div class="form">
+		<div class="decor-form"></div>
 		<form method="post" action="" class="form-contact">
 			<div class="form-field-all">
 				<div class="form-group">
@@ -60,13 +61,13 @@
 	</div>
 	<div class="contribution-list"  >
 		<div class="title">Danh sách đóng góp</div>
-		<div class="list" id="contribution-content">
+		<div class="list">
 			<div class="fm">
 				<div class="head">
 					<p>Họ và tên</p>
 					<p>Số tiền</p>
 				</div>
-				<div class="contribution-content">
+				<div class="contribution-content" id="contribution-content">
 					<div class="item">
 						<p>Hoàng Quỳnh Nga</p>
 						<p>500.000 VND</p>
@@ -165,6 +166,9 @@
 
 		//js slide banner:
 		$('#slider-for-banner').slick({
+			swipeToSlide: false,
+      touchMove: false,
+      pauseOnHover: true,
 			slidesToShow: 1,
 			dots:false,
 			infinite: false,
