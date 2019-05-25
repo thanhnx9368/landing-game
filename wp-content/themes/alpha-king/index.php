@@ -11,31 +11,16 @@
 	</div>
 	<div class="slide-banner">
 		<div class="slide-item" id="slider-for-banner">
-<<<<<<< HEAD
 			<div class="slide" style="background-image: url(<?php echo IMAGE_URL.'/landing-page/banner.png'; ?>);"></div>
-			<div class="slide" style="background-image: url(<?php echo IMAGE_URL.'/landing-page/banner.png'; ?>);"></div>
-			<div class="slide" style="background-image: url(<?php echo IMAGE_URL.'/landing-page/banner.png'; ?>);"></div>
-			<div class="slide" style="background-image: url(<?php echo IMAGE_URL.'/landing-page/banner.png'; ?>);"></div>
-			<!-- <div class="slide" style="background-image: url(<?php echo IMAGE_URL.'/landing-page/banner.png'; ?>);"></div> -->
-		</div>
-		<div class="slide-item" id="slider-nav-banner">
-			<div class="slide" style="background-image: url(<?php echo IMAGE_URL.'/landing-page/banner.png'; ?>);"></div>
-			<div class="slide" style="background-image: url(<?php echo IMAGE_URL.'/landing-page/banner.png'; ?>);"></div>
-			<div class="slide" style="background-image: url(<?php echo IMAGE_URL.'/landing-page/banner.png'; ?>);"></div>
-			<div class="slide" style="background-image: url(<?php echo IMAGE_URL.'/landing-page/banner.png'; ?>);"></div>
-			<!-- <div class="slide" style="background-image: url(<?php echo IMAGE_URL.'/landing-page/banner.png'; ?>);"></div> -->
-=======
-			<div class="slide" style="background-image: url(<?php echo IMAGE_URL.'/landing-page/img-1.jpg'; ?>);"></div>
 			<div class="slide" style="background-image: url(<?php echo IMAGE_URL.'/landing-page/img-2.jpeg'; ?>);"></div>
 			<div class="slide" style="background-image: url(<?php echo IMAGE_URL.'/landing-page/img-3.jpg'; ?>);"></div>
 			<div class="slide" style="background-image: url(<?php echo IMAGE_URL.'/landing-page/img-4.jpg'; ?>);"></div>
 		</div>
 		<div class="slide-item" id="slider-nav-banner">
-			<div class="slide" style="background-image: url(<?php echo IMAGE_URL.'/landing-page/img-1.jpg'; ?>);"></div>
+			<div class="slide" style="background-image: url(<?php echo IMAGE_URL.'/landing-page/banner.png'; ?>);"></div>
 			<div class="slide" style="background-image: url(<?php echo IMAGE_URL.'/landing-page/img-2.jpeg'; ?>);"></div>
 			<div class="slide" style="background-image: url(<?php echo IMAGE_URL.'/landing-page/img-3.jpg'; ?>);"></div>
 			<div class="slide" style="background-image: url(<?php echo IMAGE_URL.'/landing-page/img-4.jpg'; ?>);"></div>
->>>>>>> d9d23a697ec0e6f8cdf9c4f78ec2a88e48def934
 		</div>
 	</div>
 	<div class="content">
@@ -179,6 +164,9 @@
 
 		//js slide banner:
 		$('#slider-for-banner').slick({
+			swipeToSlide: false,
+      touchMove: false,
+      pauseOnHover: true,
 			slidesToShow: 1,
 			dots:false,
 			infinite: false,

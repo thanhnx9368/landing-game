@@ -134,6 +134,8 @@ canvas {
 						height: auto;
 						border-radius: 3px;
 						overflow: hidden;
+				pointer-events: initial;
+						
 						&:after{
 							display: none;
 						}
@@ -163,6 +165,7 @@ canvas {
 				@include backgroundCoverCenter;
 				background-repeat: no-repeat;
 				outline: none !important;
+				pointer-events: none;
 				@include mediaMaxWidth(768px){
 					padding-top: 22.5%;
 					height: auto;
