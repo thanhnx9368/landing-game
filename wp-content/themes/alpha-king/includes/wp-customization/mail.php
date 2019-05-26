@@ -16,7 +16,7 @@ function custom_mail_smtp_server($phpmailer)
     $phpmailer->Password = 'tlz_iDddZN4anbRHy2HiRA';
     $phpmailer->SMTPSecure = "tls"; // Choose SSL or TLS, if necessary for your server
     $phpmailer->From = 'info@timevn.com';
-    $phpmailer->FromName = 'Time Universal';
-    $phpmailer->SetFrom("info@timevn.com", "Time Universal");
+    $phpmailer->FromName = 'Alpha King\'s Charity';
+    $phpmailer->SetFrom("info@timevn.com", "Alpha King's Charity");
     //$phpmailer->SMTPDebug  = 1;
 }

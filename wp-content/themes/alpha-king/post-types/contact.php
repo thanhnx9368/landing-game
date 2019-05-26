@@ -176,25 +176,25 @@ function call_post_info_player_ajax() {
     if( !is_wp_error( $player_new_post ) ) {
         update_post_meta( $player_new_post, 'contact_name', $request['contact_name'] );
         update_post_meta( $player_new_post, 'contact_phone', $request['contact_phone'] );
-        update_post_meta( $player_new_post, 'contact_prize', $request['contact_prize'] );
+        update_post_meta( $player_new_post, 'game_prize', $request['game_prize'] );
 
 
+        $full_name = get_post_meta($player_new_post, 'contact_name', true);
+        $contact_phone = get_post_meta($player_new_post, 'contact_phone', true);
+        $game_prize = get_post_meta($player_new_post, 'game_prize', true);
 
-        $subject = 'Alpha King\'s Charity: Thông báo có từ thiện mới';
 
-        $content = "<p style='font-size:16px'> Chúc mừng bạn đã đăng ký thành công khóa học tại Dạy Học Tích Cực: </p> <br/>";
+        $subject = 'Alpha King\'s Charity: NGÀN HÀNH ĐỘNG NHỎ TRIỆU NGHĨA CỬ LỚN';
 
-        $content .= "<p style='font-size:14px'><b>Thông tin mã kích hoạt</b></p>";
-
-        $content .= $html;
-
-        $content .= "<p style='font-size:14px'>Bạn vui lòng truy cập vào <a href='http://dayhoctichcuc.edu.vn/'>Website</a> tiến hành kích hoạt khóa học</p>";
-
-        $content .= "<p style='font-size:14px'>Lưu ý: Mỗi khoá học chỉ cần kích hoạt 1 lần duy nhất</p>";
+        $content = "<p style='font-size:16px'> Website của bạn vừa có lượt quay từ thiện mới: </p> <br/>";
+        $content .= "<p style='font-size:14px'><b>Thông tin cơ bản</b></p>";
+        $content .= "<p style='font-size:14px'>Họ & Tên: .$full_name .</p>";
+        $content .= "<p style='font-size:14px'>Số điện thoại: .$contact_phone .</p>";
+        $content .= "<p style='font-size:14px'>Đóng góp: .$game_prize .</p>";
 
         $content .= "<i style='font-size:14px'>Trân trọng!</i><br/>";
 
-        $send_mail = wp_mail('rainlove9876@gmail.com', $subject, $content);
+        $send_mail = wp_mail('Alphacity.akr@gmail.com', $subject, $content);
 
         setcookie('userSave', 'success', time() + (1 * 365 * 24 * 60 * 60 ), '/');
 
@@ -219,7 +219,7 @@ function tu_add_meta_box_contact() {
     /** Meta box for general information */
     function tu_display_meta_box_contact_general($post) {
         $post_id = $post->ID;
-        $contact_prize = get_post_meta($post_id, 'contact_prize', true);
+        $game_prize = get_post_meta($post_id, 'game_prize', true);
         $contact_name = get_post_meta($post_id, 'contact_name', true);
         $contact_phone = get_post_meta($post_id, 'contact_phone', true);
         ?>
@@ -235,8 +235,8 @@ function tu_add_meta_box_contact() {
                 <td><?php echo $contact_phone; ?></td>
             </tr>
             <tr>
-                <th scope="row"><label><?php _e('Email', TEXT_DOMAIN); ?></label></th>
-                <td><?php echo $contact_prize; ?></td>
+                <th scope="row"><label><?php _e('Mức đóng góp', TEXT_DOMAIN); ?></label></th>
+                <td><?php echo $game_prize; ?></td>
             </tr>
 
             </tbody>
@@ -256,5 +256,5 @@ add_action('admin_menu', 'tu_contact_admin_menu_notification');
 function tu_contact_admin_menu_notification() {
     global $menu;
     $contacts = get_posts(array('post_type' => 'contact', 'posts_per_page' => -1, 'post_status' => 'pending'));
-    $menu[3][0] .= $contacts ? '&nbsp;<span class="update-plugins count-1" title="' .__('Bạn có', TEXT_DOMAIN).' '. count($contacts) .' '. __('thư chưa trả lời', TEXT_DOMAIN).'"><span class="update-count">' . count($contacts) . '</span></span>' : '';
+    $menu[6][0] .= $contacts ? '&nbsp;<span class="update-plugins count-1" title="' .__('Bạn có', TEXT_DOMAIN).' '. count($contacts) .' '. __('thư chưa trả lời', TEXT_DOMAIN).'"><span class="update-count">' . count($contacts) . '</span></span>' : '';
 }

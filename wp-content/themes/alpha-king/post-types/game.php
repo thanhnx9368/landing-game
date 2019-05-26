@@ -8,7 +8,7 @@ add_action('init', 'tu_reg_post_type_game');
 function tu_reg_post_type_game() {
 
     //Change this when creating post type
-    $post_type_name = 'Game Prizing';
+    $post_type_name = 'Cơ cấu giải thưởng';
     $post_type_name_lower = mb_strtolower($post_type_name, 'utf-8');
     $post_type_name_slug = tu_remove_accent($post_type_name, '-');
     $post_type_menu_position = 3;
@@ -41,7 +41,7 @@ function tu_reg_post_type_game() {
         'description' => $post_type_name,
         'menu_position' => $post_type_menu_position,
         'menu_icon' => 'dashicons-welcome-write-blog',
-        'supports' => array('title', 'thumbnail',),
+        'supports' => array('title'),
         /*'rewrite' => array(
             'slug' => 'tin-tuc'
         ),*/
@@ -123,28 +123,28 @@ function tu_add_meta_box_game() {
 
     function tu_display_meta_box_prize_general($post) {
         $post_id = $post->ID;
-        $game_lat = get_post_meta($post_id, 'game_lat', true);
-        $game_lng = get_post_meta($post_id, 'game_lng', true);
         $game_prize_code = get_post_meta($post_id, 'game_prize_code', true);
         ?>
         <table class="form-table">
             <tbody>
             <tr>
-                <th scope="row"><label for="game_lat">Tọa độ LAT</label></th>
-                <td>
-                    <input type="text" class="regular-text" name="game_lat" value="<?php echo $game_lat; ?>"/>
-                </td>
-            </tr>
-            <tr>
-                <th scope="row"><label for="game_lng">Tọa độ LNG</label></th>
-                <td>
-                    <input type="text" class="regular-text" name="game_lng" value="<?php echo $game_lng; ?>"/>
-                </td>
-            </tr>
-            <tr>
-                <th scope="row"><label for="game_prize_code">Mức giải thưởng</label></th>
+                <th scope="row"><label for="game_prize_code">Mã giải thưởng</label></th>
                 <td>
                     <input type="text" class="regular-text" name="game_prize_code" value="<?php echo $game_prize_code; ?>"/>
+                </td>
+            </tr>
+            <tr>
+                <th>
+                    <h3>Ví dụ:</h3>
+                    <em>- 1 lọ (500 nghìn) thì nhập giá trị trong ô = 1</em>
+                </th>
+                <td>
+                    <em></em>
+                    <p>1 lọ (500 nghìn)</p> = <b>1</b>
+                    <p>2 lọ (1 triệu)</p> = <b>2</b>
+                    <p>5 lọ (2.5 triệu)</p> = <b>5</b>
+                    <p>8 lọ (4 triệu)</p> = <b>8</b>
+                    <p>10 lọ (5 triệu)</p> = <b>10</b>
                 </td>
             </tr>
             </tbody>
@@ -229,7 +229,9 @@ function game_call_get_prize_ajax()
     $request['player_phone'] = isset( $_POST['player_phone'] ) ? $_POST['player_phone'] : '';
 
     $game_price = tu_get_game_with_pagination(1, 1);
-    $game_detail = [];
+    $game_detail = [
+        'code' => 1
+    ];
     $post_id_to_delete = '';
 
     if (isset($game_price) && $game_price) :
@@ -237,6 +239,8 @@ function game_call_get_prize_ajax()
         while ($game_price->have_posts()) : $game_price->the_post();
             $post_id = get_the_ID();
             $game_prize_code = get_post_meta($post_id, 'game_prize_code', true);
+
+
 
             if ( !$request['player_phone'] && $request['player_phone'] === '' ) {
                 $game_prize_code = 1;

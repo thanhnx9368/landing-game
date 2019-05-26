@@ -280,7 +280,6 @@
                         player_phone: contactPhoneValue ? contactPhoneValue : ''
                     },
                     success: function (response) {
-                        console.log(response, 'response');
                         if ( response.success === true ) {
                             $('.wheel-of-fortune, .overlay').fadeIn();
                        } else {
@@ -296,99 +295,96 @@
 
                 });
             }
-
-
 		});
-
-
 	});
 
+	var isClickSpin = true;
 
     function start(e) {
 		canSpin = true;
         //xử lý ajax gọi server để lấy lat, lng, value
 
-        var ajaxurl = "<?php echo admin_url('admin-ajax.php'); ?>";
-        var contactNameValue = document.getElementById("contact_name").value;
-        var contactPhoneValue = document.getElementById("contact_phone").value;
+        if (isClickSpin === true) {
+            isClickSpin = false;
+            var ajaxurl = "<?php echo admin_url('admin-ajax.php'); ?>";
+            var contactNameValue = document.getElementById("contact_name").value;
+            var contactPhoneValue = document.getElementById("contact_phone").value;
+            // var formButton = ;
 
+            jQuery.ajax({
+                url: ajaxurl,
+                type: 'post',
+                dataType: 'json',
+                data: {
+                    nonce: "<?php echo wp_create_nonce('game_call_get_prize_nonce') ?>",
+                    action: "game_call_get_prize_ajax",
+                    player_phone: contactPhoneValue ? contactPhoneValue : ''
+                },
+                success: function(response) {
+                    if (response) {
+                        let code = parseInt(response.code);
+                        let lat = '';
+                        let lng = '';
+                        let textPrize = '';
 
-        var lan1 =  jQuery.ajax({
-        	url: ajaxurl,
-        	type: 'post',
-        	dataType: 'json',
-        	data: {
-        		nonce: "<?php echo wp_create_nonce('game_call_get_prize_nonce') ?>",
-        		action: "game_call_get_prize_ajax",
-                player_phone: contactPhoneValue ? contactPhoneValue : ''
-        	},
-            success: function(response) {
-                if (response) {
-                    let code = parseInt(response.code);
-                    let lat = '';
-                    let lng = '';
-                    let textPrize = '';
-
-                    if ( code === 10 ) {
-                        lat = 14;
-                        lng = 30;
-                        textPrize = '10 lọ (5 triệu)';
-                    } else if ( code === 2 ) {
-                        lat = 126;
-                        lng = 145;
-                        textPrize = '2 lọ (1 triệu)';
-                    } else if ( code === 5 ) {
-                        lat = 58;
-                        lng = 76;
-                        textPrize = '5 lọ (2.5 triệu)';
-                    } else if ( code === 8 ) {
-                        lat = 105;
-                        lng = 123;
-                        textPrize = '8 lọ (4 triệu)';
-                    } else {
-                        lat = 172;
-                        lng = 189;
-                        textPrize = '1 lọ (500 nghìn)';
-                    }
-                    document.getElementById("prize_text").innerHTML = textPrize;
-                    document.getElementById("player").innerHTML = contactNameValue;
-
-                    jQuery.ajax({
-                        url: ajaxurl,
-                        type: 'post',
-                        dataType: 'json',
-                        data: {
-                            nonce: "<?php echo wp_create_nonce('call_post_info_player_nonce') ?>",
-                            action: "call_post_info_player_ajax",
-                            contact_name: contactNameValue,
-                            contact_phone: contactPhoneValue,
-                            game_prize: textPrize
-                        },
-                        success: function (dataRecieve) {
-                            console.log('gửi thành công', dataRecieve)
-                        },
-                        error: function () {
-                            console.log('gửi ko thành công')
+                        if ( code === 10 ) {
+                            lat = 14;
+                            lng = 30;
+                            textPrize = '10 lọ (5 triệu)';
+                        } else if ( code === 2 ) {
+                            lat = 126;
+                            lng = 145;
+                            textPrize = '2 lọ (1 triệu)';
+                        } else if ( code === 5 ) {
+                            lat = 58;
+                            lng = 76;
+                            textPrize = '5 lọ (2.5 triệu)';
+                        } else if ( code === 8 ) {
+                            lat = 105;
+                            lng = 123;
+                            textPrize = '8 lọ (4 triệu)';
+                        } else {
+                            lat = 172;
+                            lng = 189;
+                            textPrize = '1 lọ (500 nghìn)';
                         }
-                    });
+                        document.getElementById("prize_text").innerHTML = textPrize;
+                        document.getElementById("player").innerHTML = contactNameValue;
 
-                    setTimeout(function(){
-                        jQuery('.wheel-of-fortune').find('.popup').hide();
-                        jQuery('.wheel-of-fortune').find('.popup-confirm').show();
-                    }, 3000);
+                        jQuery.ajax({
+                            url: ajaxurl,
+                            type: 'post',
+                            dataType: 'json',
+                            data: {
+                                nonce: "<?php echo wp_create_nonce('call_post_info_player_nonce') ?>",
+                                action: "call_post_info_player_ajax",
+                                contact_name: contactNameValue,
+                                contact_phone: contactPhoneValue,
+                                game_prize: textPrize
+                            },
+                            success: function (dataRecieve) {
+                            },
+                            error: function () {
+                                console.log('Request save data fail')
+                            }
+                        });
 
-                    that.spin(lat, lng, 10);
+                        setTimeout(function(){
+                            jQuery('.wheel-of-fortune').find('.popup').hide();
+                            jQuery('.wheel-of-fortune').find('.popup-confirm').show();
+                        }, 15000);
 
-                }
-                return false;
-            },
-          error: function() {
-              // When AJAX call has failed
-              console.log('AJAX call failed.');
-          },
-        })
+                        that.spin(lat, lng, 10);
 
-
+                    }
+                    return false;
+                },
+                error: function() {
+                    // When AJAX call has failed
+                    console.log('AJAX call failed.');
+                },
+            })
+        }
     }
 </script> 
 <?php get_footer(); ?>

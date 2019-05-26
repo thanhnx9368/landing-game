@@ -31,3 +31,9 @@ include_once(TEMPLATE_PATH . '/post-types/game.php');
 include_once(TEMPLATE_PATH . '/post-types/contact.php');
 
 
+
+function show_array($name) {
+    echo "<pre>";
+    print_r($name);
+    echo "</pre>";
+}
