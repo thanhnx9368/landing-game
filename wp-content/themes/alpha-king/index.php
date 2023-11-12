@@ -98,7 +98,7 @@ $contact = tu_get_contact_with_pagination(1, -1);
 		<div id="gameDiv"></div>
 		<div class="button-action" id="button-action" onclick="start()">Đóng góp</div>
 	</div>
-	<div class="popup-confirm" style="display: block">
+	<div class="popup-confirm" style="display: none">
 		<div class="content">
 			<div class="img"><img src="<?php echo IMAGE_URL.'/landing-page/confirm.png'; ?>"></div>
 			<div class="_fm">
@@ -123,120 +123,119 @@ $contact = tu_get_contact_with_pagination(1, -1);
 <div class="overlay"></div>
 
 <script>
-	jQuery(document).ready(function($) {
+    jQuery(document).ready(function($) {
 
 
-		//js css decor:
-		var width_content = $('body').width();
-		$('.decor-name, .decor-content').css('border-left-width' , width_content);
-		$('.decor-bottom').css('border-right-width' , (width_content*70)/100);
+        //js css decor:
+        var width_content = $('body').width();
+        $('.decor-name, .decor-content').css('border-left-width' , width_content);
+        $('.decor-bottom').css('border-right-width' , (width_content*70)/100);
 
-		var nav_slide = ($('#slider-nav-banner .slide:nth-of-type(1)').width() - 30) / 4;
-		 $('#slider-nav-banner .slide').css('height' , nav_slide);
+        var nav_slide = ($('#slider-nav-banner .slide:nth-of-type(1)').width() - 30) / 4;
+        $('#slider-nav-banner .slide').css('height' , nav_slide);
 
-		//js slide banner:
-		$('#slider-for-banner').slick({
-			slidesToShow: 1,
-			dots:false,
-			infinite: false,
-			adaptiveHeight: true,
-			asNavFor: '#slider-nav-banner',
-		});
-		$('#slider-nav-banner').slick({
-			slidesToShow: 4,
-			dots:false,
-			infinite: false,
-			adaptiveHeight: true,
-			focusOnSelect: true,
-			asNavFor: '#slider-for-banner',
-		});
+        //js slide banner:
+        $('#slider-for-banner').slick({
+            slidesToShow: 1,
+            dots:false,
+            infinite: false,
+            adaptiveHeight: true,
+            asNavFor: '#slider-nav-banner',
+        });
+        $('#slider-nav-banner').slick({
+            slidesToShow: 4,
+            dots:false,
+            infinite: false,
+            adaptiveHeight: true,
+            focusOnSelect: true,
+            asNavFor: '#slider-for-banner',
+        });
 
-		//js hiển thị popup:
-		/*$('button').click(function(event){
-			$('.wheel-of-fortune, .overlay').fadeIn();
-		});*/
+        //js hiển thị popup:
+        /*$('button').click(function(event){
+            $('.wheel-of-fortune, .overlay').fadeIn();
+        });*/
 
-	/*	$('.overlay').click(function(event){
-			$('.wheel-of-fortune, .overlay').fadeOut();
-		});*/
+        /*	$('.overlay').click(function(event){
+                $('.wheel-of-fortune, .overlay').fadeOut();
+            });*/
 
-		//js scrollbar:
-		$('#contribution-content').mCustomScrollbar();
+        //js scrollbar:
+        $('#contribution-content').mCustomScrollbar();
 
-		//js quay giải thưởng
-		/*var wheel = document.querySelector("#grade_1"),
-		button = document.querySelector("#button-action"),
-		rando = 0;
-		var spin_wheel = function () {
-			rando += (Math.random() * 360) + 2880;
-			wheel.style.webkitTransform = "rotate(" + rando + "deg)";
-			wheel.style.mozTransform = "rotate(" + rando + "deg)";
-			wheel.style.msTransform = "rotate(" + rando + "deg)";
-			wheel.style.transform = "rotate(" + rando + "deg)";
-		}
-		button.addEventListener("click", spin_wheel, false);*/
+        //js quay giải thưởng
+        /*var wheel = document.querySelector("#grade_1"),
+        button = document.querySelector("#button-action"),
+        rando = 0;
+        var spin_wheel = function () {
+            rando += (Math.random() * 360) + 2880;
+            wheel.style.webkitTransform = "rotate(" + rando + "deg)";
+            wheel.style.mozTransform = "rotate(" + rando + "deg)";
+            wheel.style.msTransform = "rotate(" + rando + "deg)";
+            wheel.style.transform = "rotate(" + rando + "deg)";
+        }
+        button.addEventListener("click", spin_wheel, false);*/
 
 
-		function validatePhonenumber(number) {
-			var re = /^0[0-9]{3}[0-9]{3}[0-9]{3}$/ ;
-			return re.test(String(number));
-		}
-		var formButton = $('#form_submit');
-		var name_msg = $('body').find('#name_msg');
-		var phone_msg = $('body').find('#phone_msg');
+        function validatePhonenumber(number) {
+            var re = /^0[0-9]{3}[0-9]{3}[0-9]{3}$/ ;
+            return re.test(String(number));
+        }
+        var formButton = $('#form_submit');
+        var name_msg = $('body').find('#name_msg');
+        var phone_msg = $('body').find('#phone_msg');
 
         var check_boolean_phone = true;
 
         $('#contact_phone').change(function (event) {
-			var phone_text = $(this).val();
-			var count_number = phone_text.length;
+            var phone_text = $(this).val();
+            var count_number = phone_text.length;
 
-			if ( !validatePhonenumber(phone_text) && phone_text || count_number > 11 ) {
-				phone_msg.text('Số điện thoại không hợp lệ!');
-				formButton.css("cursor", "not-allowed");
-				formButton.prop('disabled', true);
+            if ( !validatePhonenumber(phone_text) && phone_text || count_number > 11 ) {
+                phone_msg.text('Số điện thoại không hợp lệ!');
+                formButton.css("cursor", "not-allowed");
+                formButton.prop('disabled', true);
                 check_boolean_phone = false;
             } else {
-				phone_msg.text('');
-				formButton.css("cursor", "pointer");
-				formButton.prop('disabled', false);
+                phone_msg.text('');
+                formButton.css("cursor", "pointer");
+                formButton.prop('disabled', false);
                 check_boolean_phone = true;
             }
-		});
+        });
 
-		$('#contact_name').keyup(function (event) {
+        $('#contact_name').keyup(function (event) {
             name_msg.text('');
             formButton.css("cursor", "pointer");
             formButton.prop('disabled', false);
-		});
+        });
 
-		$('#contact_phone').keyup(function (event) {
+        $('#contact_phone').keyup(function (event) {
             phone_msg.text('');
             formButton.css("cursor", "pointer");
             formButton.prop('disabled', false);
-		});
+        });
 
-        // $('.wheel-of-fortune, .overlay').fadeIn();
         $('#form_submit').click(function (event) {
-			event.preventDefault();
+            event.preventDefault();
 
-			var form = $(this);
-			let contactNameValue = $('#contact_name').val();
-			let contactPhoneValue = $('#contact_phone').val();
+            var form = $(this);
+            let contactNameValue = $('#contact_name').val();
+            let contactPhoneValue = $('#contact_phone').val();
 
 
-			if ( !contactNameValue || contactNameValue === '' || contactNameValue === null ) {
+            if ( !contactNameValue || contactNameValue === '' || contactNameValue === null ) {
                 name_msg.text('Vui lòng điền họ tên! ');
-				formButton.css("cursor", "not-allowed");
-				formButton.prop('disabled', true);
-			}
+                formButton.css("cursor", "not-allowed");
+                formButton.prop('disabled', true);
+            }
             if ( contactNameValue && !contactPhoneValue  ) {
                 $('.wheel-of-fortune, .overlay').fadeIn();
             }
 
-			if ( contactNameValue && contactPhoneValue && check_boolean_phone ) {
-			    jQuery.ajax({
-                   url: "<?php echo admin_url('admin-ajax.php'); ?>",
+            if ( contactNameValue && contactPhoneValue && check_boolean_phone ) {
+                jQuery.ajax({
+                    url: "<?php echo admin_url('admin-ajax.php'); ?>",
                     type: 'post',
                     dataType: 'json',
                     data: {
@@ -247,7 +246,7 @@ $contact = tu_get_contact_with_pagination(1, -1);
                     success: function (response) {
                         if ( response.success === true ) {
                             $('.wheel-of-fortune, .overlay').fadeIn();
-                       } else {
+                        } else {
                             phone_msg.text('Liên hệ này đã đăng ký. Vui lòng thử lại!');
                             formButton.css("cursor", "not-allowed");
                             formButton.prop('disabled', true);
@@ -260,13 +259,13 @@ $contact = tu_get_contact_with_pagination(1, -1);
 
                 });
             }
-		});
-	});
+        });
+    });
 
-	var isClickSpin = true;
+    var isClickSpin = true;
 
     function start(e) {
-		canSpin = true;
+        canSpin = true;
         //xử lý ajax gọi server để lấy lat, lng, value
 
         if (isClickSpin === true) {
@@ -339,7 +338,7 @@ $contact = tu_get_contact_with_pagination(1, -1);
                             jQuery('.wheel-of-fortune').find('.popup-confirm').show();
                         }, 15000);
 
-                        that.spin(172, 189, 10);
+                        that.spin(lat, lng, 10);
 
                     }
                     return false;
@@ -351,5 +350,6 @@ $contact = tu_get_contact_with_pagination(1, -1);
             })
         }
     }
-</script> 
+</script>
+
 <?php get_footer(); ?>
