@@ -1,4 +1,7 @@
-<?php get_header(); ?>
+<?php
+get_header();
+$contact = tu_get_contact_with_pagination(1, -1);
+?>
 <main class="landing-page">
 	<a href="<?php echo HOME_URL; ?>" class="logo"><img src="<?php echo IMAGE_URL.'/landing-page/logo.png'; ?>" alt="alphaking"></a>
 	<div class="program-name">
@@ -39,7 +42,6 @@
 			<p>Thông tin chi tiết về <br/> Làng Trẻ Em SOS Việt Nam <br/><a href="https://sosvietnam.org/" target="_blank">https://sosvietnam.org/</a></p>
 		</div>
 	</div>
-    <?php if ( !isset($_COOKIE['userSave']) || $_COOKIE['userSave'] != 'success' ) : ?>
     <div class="form">
 		<div class="decor-form"></div>
 		<form method="post" action="" class="form-contact">
@@ -61,72 +63,34 @@
 			</div>
 		</form>
 	</div>
-    <?php endif; ?>
-	<!--<div class="contribution-list"  >
-		<div class="title">Danh sách đóng góp</div>
-		<div class="list">
-			<div class="fm">
-				<div class="head">
-					<p>Họ và tên</p>
-					<p>Số tiền</p>
-				</div>
-				<div class="contribution-content" id="contribution-content">
-					<div class="item">
-						<p>Hoàng Quỳnh Nga</p>
-						<p>500.000 VND</p>
-					</div>
-					<div class="item">
-						<p>Hoàng Quỳnh Nga</p>
-						<p>500.000 VND</p>
-					</div>
-					<div class="item">
-						<p>Hoàng Quỳnh Nga</p>
-						<p>500.000 VND</p>
-					</div>
-					<div class="item">
-						<p>Hoàng Quỳnh Nga</p>
-						<p>500.000 VND</p>
-					</div>
-					<div class="item">
-						<p>Hoàng Quỳnh Nga</p>
-						<p>500.000 VND</p>
-					</div>
-					<div class="item">
-						<p>Hoàng Quỳnh Nga</p>
-						<p>500.000 VND</p>
-					</div>
-					<div class="item">
-						<p>Hoàng Quỳnh Nga</p>
-						<p>500.000 VND</p>
-					</div>
-					<div class="item">
-						<p>Hoàng Quỳnh Nga</p>
-						<p>500.000 VND</p>
-					</div>
-					<div class="item">
-						<p>Hoàng Quỳnh Nga</p>
-						<p>500.000 VND</p>
-					</div>
-					<div class="item">
-						<p>Hoàng Quỳnh Nga</p>
-						<p>500.000 VND</p>
-					</div>
-					<div class="item">
-						<p>Hoàng Quỳnh Nga</p>
-						<p>500.000 VND</p>
-					</div>
-					<div class="item">
-						<p>Hoàng Quỳnh Nga</p>
-						<p>500.000 VND</p>
-					</div>
-					<div class="item">
-						<p>Hoàng Quỳnh Nga</p>
-						<p>500.000 VND</p>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>-->
+      <?php if (isset($contact) && $contact) : ?>
+        <div class="contribution-list"  >
+            <div class="title">Danh sách đóng góp</div>
+            <div class="list">
+                <div class="fm">
+                    <div class="head">
+                        <p>Họ và tên</p>
+                        <p>Số tiền</p>
+                    </div>
+                    <div class="contribution-content" id="contribution-content">
+                          <?php while ($contact->have_posts()) : $contact->the_post();
+                            $post_id = get_the_ID();
+                            $game_prize = get_post_meta($post_id, 'game_prize', true);
+                            $full_name = get_post_meta($post_id, 'contact_name', true);
+
+                            ?>
+                              <div class="item">
+                                  <p><?= $full_name ?></p>
+                                  <p><?= $game_prize ?></p>
+                              </div>
+                        <?php endwhile; ?>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+      <?php endif; ?>
+
 	<div class="copyright">© 2019 Alpha King. All Right Reserved</div>
 </main>
 <div class="wheel-of-fortune">
@@ -134,7 +98,7 @@
 		<div id="gameDiv"></div>
 		<div class="button-action" id="button-action" onclick="start()">Đóng góp</div>
 	</div>
-	<div class="popup-confirm" style="display: none">
+	<div class="popup-confirm" style="display: block">
 		<div class="content">
 			<div class="img"><img src="<?php echo IMAGE_URL.'/landing-page/confirm.png'; ?>"></div>
 			<div class="_fm">
@@ -252,6 +216,7 @@
             formButton.prop('disabled', false);
 		});
 
+        // $('.wheel-of-fortune, .overlay').fadeIn();
         $('#form_submit').click(function (event) {
 			event.preventDefault();
 
@@ -374,7 +339,7 @@
                             jQuery('.wheel-of-fortune').find('.popup-confirm').show();
                         }, 15000);
 
-                        that.spin(lat, lng, 10);
+                        that.spin(172, 189, 10);
 
                     }
                     return false;

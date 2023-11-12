@@ -194,7 +194,7 @@ function call_post_info_player_ajax() {
 
         $content .= "<i style='font-size:14px'>Trân trọng!</i><br/>";
 
-        $send_mail = wp_mail('Alphacity.akr@gmail.com', $subject, $content);
+//        $send_mail = wp_mail('Alphacity.akr@gmail.com', $subject, $content);
 
         setcookie('userSave', 'success', time() + (1 * 365 * 24 * 60 * 60 ), '/');
 
